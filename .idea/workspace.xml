@@ -9,10 +9,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/Server/prop/GetFile.java" line="30" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c314ea08-6d77-469a-9858-6948002aef46" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WebSide/FeedBack.java" afterPath="$PROJECT_DIR$/src/WebSide/FeedBack.java" />
-    </list>
+    <list default="true" id="c314ea08-6d77-469a-9858-6948002aef46" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/web/WEB-INF/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,8 +57,8 @@
       <file leaf-file-name="FeedBack.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WebSide/FeedBack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+            <state relative-caret-position="428">
+              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <marker date="1553826239683" expanded="true" signature="1302:1340" ph="INSERT INTO FeedBackOfWeb... " />
               </folding>
@@ -72,28 +69,8 @@
       <file leaf-file-name="error.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/webpage/error.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ok.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/webpage/ok.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            <state relative-caret-position="152">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -105,7 +82,6 @@
             <state relative-caret-position="361">
               <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <marker date="1523268436855" expanded="true" signature="1009:1046" ph="INSERT INTO REGISTER... " />
               </folding>
             </state>
@@ -260,7 +236,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -284,24 +260,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webpage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,11 +327,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prop" />
+              <option name="myItemId" value="Rigister" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -387,17 +341,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="out" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Rigister" />
+              <option name="myItemId" value="artifacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
@@ -415,8 +373,12 @@
     <property name="SearchEverywhereHistoryKey" value="ProductSearchLike&#9;FILE&#9;file://E:/FZ-kingdee/KingdeeServer/Asist/src/Server/ProductSearch/ProductSearchLike.java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\FZ-kingdee\LogServer\web\webpage" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\FZ-kingdee\LogServer\out\artifacts\Assist\img" />
+      <recent name="E:\FZ-kingdee\LogServer\web" />
+      <recent name="E:\FZ-kingdee\LogServer\src\Rigister" />
+      <recent name="G:\project\fz\server\Asist\src\Bean" />
+      <recent name="G:\project\fz\server\Asist\out\artifacts\Assist" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="WebSide" />
@@ -425,12 +387,8 @@
       <recent name="Log" />
       <recent name="Server.JhSearch" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\FZ-kingdee\LogServer\web" />
-      <recent name="E:\FZ-kingdee\LogServer\src\Rigister" />
-      <recent name="G:\project\fz\server\Asist\src\Bean" />
-      <recent name="G:\project\fz\server\Asist\out\artifacts\Assist" />
-      <recent name="G:\project\fz\server\Asist\out\artifacts" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\FZ-kingdee\LogServer\web\webpage" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1274,11 +1232,12 @@
       <workItem from="1553763542456" duration="99000" />
       <workItem from="1553764093312" duration="4123000" />
       <workItem from="1553826084724" duration="1258000" />
+      <workItem from="1554795564168" duration="2523000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="980892000" />
+    <option name="totallyTimeSpent" value="983415000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1290,8 +1249,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1309,7 +1268,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1332611" sideWeight="0.49573562" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.7120419" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25266525" sideWeight="0.7120419" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1380597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04904051" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1631,36 +1590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1026">
           <caret line="74" column="38" lean-forward="false" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#873#874#0" expanded="false" />
-            <element signature="e#896#897#0" expanded="false" />
-            <marker date="1534133016560" expanded="true" signature="10777:11118" ph="select t1.FI... IcPrcPlyEntry" />
-            <marker date="1534133016560" expanded="true" signature="12427:12562" ph="SELECT FAcco... t_Account" />
-            <marker date="1534133016560" expanded="true" signature="13330:13385" ph="select FID,F... ICBillType" />
-            <marker date="1534133016560" expanded="true" signature="14104:14262" ph="select abs(F... ICClassType" />
-            <marker date="1534133016560" expanded="true" signature="14997:15335" ph="SELECT FType... t_SubMessage" />
-            <marker date="1534133016560" expanded="true" signature="16205:16448" ph="SELECT TOP 5... t_Item" />
-            <marker date="1534133016560" expanded="true" signature="17341:17634" ph="SELECT t1.FI... t_Item" />
-            <marker date="1534133016560" expanded="true" signature="18854:19058" ph="select FUser... t_User" />
-            <marker date="1534133016560" expanded="true" signature="20456:20879" ph="select FIsSn... t_ICItem" />
-            <marker date="1534133016560" expanded="true" signature="21019:21463" ph="select FIsSn... t_ICItem" />
-            <marker date="1534133016560" expanded="true" signature="21511:21961" ph="select FIsSn... t_ICItem" />
-            <marker date="1534133016560" expanded="true" signature="23743:23803" ph="select FItem... t_Settle" />
-            <marker date="1534133016560" expanded="true" signature="24568:24847" ph="SELECT t1.FI... t_Item" />
-            <marker date="1534133016560" expanded="true" signature="26169:26305" ph="select t2.FN... t_Barcode" />
-            <marker date="1534133016560" expanded="true" signature="26350:26489" ph="select t2.FN... t_Barcode" />
-            <marker date="1534133016560" expanded="true" signature="27528:27632" ph="select FMeas... t_Measureunit" />
-            <marker date="1534133016560" expanded="true" signature="28596:28810" ph="select FItem... t_Stock" />
-            <marker date="1534133016560" expanded="true" signature="28895:29255" ph="select t1.FI... t_Stock" />
-            <marker date="1534133016560" expanded="true" signature="29303:29465" ph="select FItem... t_Stock" />
-            <marker date="1534133016560" expanded="true" signature="30669:30823" ph="select FItem... ICInventory" />
-            <marker date="1534133016560" expanded="true" signature="31871:32155" ph="select a.FSP... t_StockPlace" />
-            <marker date="1534133016560" expanded="true" signature="33326:33473" ph="select FItem... t_Emp" />
-            <marker date="1534133016560" expanded="true" signature="34361:34422" ph="select FItem... t_Department" />
-            <marker date="1534133016560" expanded="true" signature="35424:35527" ph="select FCurr... t_Currency" />
-            <marker date="1534133016560" expanded="true" signature="35572:35669" ph="select FCurr... t_Currency" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1714,9 +1643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="38" column="51" lean-forward="false" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
-          <folding>
-            <marker date="1548384748819" expanded="true" signature="1381:1409" ph="SELECT * FRO... GETTIMEMANAGER" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1724,9 +1650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding>
-            <marker date="1548384748867" expanded="true" signature="1208:1246" ph="UPDATE GETTI... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1748,35 +1671,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding>
-            <marker date="1523268436853" expanded="true" signature="1031:1077" ph="SELECT * FRO... REGISTER" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/prop/RegisterCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <marker date="1523268436855" expanded="true" signature="1009:1046" ph="INSERT INTO REGISTER... " />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/webpage/ok.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/webpage/error.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="190">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1789,6 +1690,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/webpage/error.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/JDBCUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -1797,10 +1706,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/prop/RegisterCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+          <folding>
+            <marker date="1523268436855" expanded="true" signature="1009:1046" ph="INSERT INTO REGISTER... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WebSide/FeedBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+        <state relative-caret-position="428">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <marker date="1553826239683" expanded="true" signature="1302:1340" ph="INSERT INTO FeedBackOfWeb... " />
           </folding>
