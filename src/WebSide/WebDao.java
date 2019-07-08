@@ -1,5 +1,6 @@
 package WebSide;
 
+import Bean.FeedBackBean;
 import Bean.RegisterBean;
 import Utils.JDBCUtil;
 import Utils.Lg;
@@ -56,6 +57,48 @@ public class WebDao {
 		try {
 			conn = JDBCUtil.getSQLiteConn1();
 			String SQL = "DELETE Register_code="+user+" FROM REGISTER";
+			sta = conn.prepareStatement(SQL);
+			boolean b = sta.execute();
+			Lg.e("删除",b);
+			if (!b){
+//                response.sendRedirect("error.jsp");
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+	}
+
+	public List<FeedBackBean> getFeedBack(){
+		List<FeedBackBean> list = new ArrayList<>();
+		try {
+			conn = JDBCUtil.getSQLiteForFeedBack();
+			String SQL = "SELECT * FROM FeedBackOfWeb ORDER BY id DESC ";
+			sta = conn.prepareStatement(SQL);
+			rs = sta.executeQuery();
+			while (rs.next()) {
+				FeedBackBean bean = new FeedBackBean();
+				bean.id = rs.getString("id");
+				bean.name = rs.getString("name");
+				bean.phone = rs.getString("phone");
+				list.add(bean);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return list;
+	}
+	public void deleteFeedBack(String id){
+		try {
+			conn = JDBCUtil.getSQLiteForFeedBack();
+			String SQL = "DELETE id="+id+" FROM FeedBackOfWeb";
 			sta = conn.prepareStatement(SQL);
 			boolean b = sta.execute();
 			Lg.e("删除",b);

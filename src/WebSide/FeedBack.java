@@ -26,24 +26,38 @@ public class FeedBack extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Connection conn = null;
         PreparedStatement sta = null;
-        String paramter = request.getParameter("json");
-        Lg.e("反馈信息请求。。。。"+paramter);
+//        String paramter = request.getParameter("json");
+//        Lg.e("反馈信息请求。。。。"+paramter);
             try {
-                String[] split = paramter.split("/", 2);
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-                Date curDate = new Date();
-                String str = format.format(curDate);
-                conn = JDBCUtil.getSQLiteForFeedBack();
-                String SQL = "INSERT INTO FeedBackOfWeb VALUES (?,?)";
-                sta = conn.prepareStatement(SQL);
-                sta.setString(1,split[0]);
-                sta.setString(2,split[1]);
+//                if (paramter.contains("/")){
+//                    String[] split = paramter.split("/", 2);
+//                    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+//                    Date curDate = new Date();
+//                    String str = format.format(curDate);
+//                    conn = JDBCUtil.getSQLiteForFeedBack();
+//                    String SQL = "INSERT INTO FeedBackOfWeb VALUES (?,?)";
+//                    sta = conn.prepareStatement(SQL);
+//                    sta.setString(1,split[0]);
+//                    sta.setString(2,split[1]);
+//                }else{
+                    String username = new String(request.getParameter("name"));
+                    String password = new String(request.getParameter("phone"));
+                    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+                    Date curDate = new Date();
+                    String str = format.format(curDate);
+                    conn = JDBCUtil.getSQLiteForFeedBack();
+                    String SQL = "INSERT INTO FeedBackOfWeb VALUES (?,?,?)";
+                    sta = conn.prepareStatement(SQL);
+                    sta.setString(1,username);
+                    sta.setString(2,password);
+//                }
+
                 int i = sta.executeUpdate();
                 if(i>0){
                     Lg.e("UpdateTime Success~更新时间成功");
 //                    response.getWriter().write("信息反馈成功");
                     //反馈成功
-                    response.sendRedirect("https://www.baidu.com/");
+                    response.sendRedirect("FeedBack.jsp");
 
                 }else{
                     Lg.e("UpdateTime Error~更新日期失败");
