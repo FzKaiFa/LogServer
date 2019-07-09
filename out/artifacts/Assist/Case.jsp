@@ -23,6 +23,14 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link type="text/javascript" src="js/swiper.min.js">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 80%;
+            height: 100%;
+
+        }
+    </style>
 </head>
 <body>
 <%--<jsp:include page="headLayout.jsp"/>--%>
@@ -44,6 +52,41 @@
     <img src="http://148.70.108.65:8080/LogAssist/img/bg.jpg" alt="Pulpit rock" width="100%" height="200px">
 </div>
 <jsp:include page="item_TopNavbar.jsp"/>
+
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- 指示符 -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- 轮播图片 -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/ztkj.jpg">
+        </div>
+        <div class="carousel-item">
+            <img src="img/jjfa.jpg">
+        </div>
+        <div class="carousel-item">
+            <img src="img/lc.jpg">
+        </div>
+    </div>
+
+    <!-- 左右切换按钮 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+
 <div class="container" style="margin-top:30px">
     <div class="row">
         <section class="pc-banner">
