@@ -10,6 +10,8 @@
          pageEncoding="UTF-8" %>
 <%@ page import="com.sun.org.apache.xpath.internal.operations.String" %>
 <%@ page import="WebSide.FeedBack" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
     <title>注册用户管理</title>
@@ -25,7 +27,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-fixed-top">
     <a class="navbar-brand col-xl-7" href="#" style="margin-left: 6.25rem;">方左科技</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -33,13 +36,16 @@
     <div class="collapse navbar-collapse col-xl-3" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="Home.jsp">首页</a>
+                <a class="nav-link" href="Home.jsp" target="index_show">首页</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Case.jsp">案例</a>
+                <a class="nav-link" href="Case.jsp" target="index_show">案例</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="FeedBack.jsp">联系</a>
+                <a class="nav-link" href="FeedBack.jsp" target="index_show">联系</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Manage.jsp" target="index_show">系统管理</a>
             </li>
         </ul>
     </div>

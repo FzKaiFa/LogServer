@@ -10,6 +10,8 @@
          pageEncoding="UTF-8" %>
 <%@ page import="com.sun.org.apache.xpath.internal.operations.String" %>
 <%@ page import="WebSide.FeedBack" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
     <title>注册用户管理</title>
@@ -40,10 +42,7 @@
     String tips = (String) request.getAttribute("tips");
 %>
 <h5 ><%=tips%></h5>--%>
-<div style="width: auto;height: auto;">
-    <img src="http://148.70.108.65:8080/LogAssist/img/bg.jpg" alt="Pulpit rock" width="100%" height="200px">
-</div>
-<jsp:include page="item_TopNavbar.jsp"/>
+<%--<jsp:include page="item_TopNavbar.jsp"/>--%>
 <div class="container" style="margin-top:30px">
     <div class="row">
         <div class="col-sm-4">

@@ -26,9 +26,10 @@
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
-            width: 80%;
+            width: 100%;
             height: 100%;
-
+            text-align:center;
+            margin: 50px;
         }
     </style>
 </head>
@@ -48,10 +49,7 @@
     String tips = (String) request.getAttribute("tips");
 %>
 <h5 ><%=tips%></h5>--%>
-<div style="width: auto;height: auto;">
-    <img src="http://148.70.108.65:8080/LogAssist/img/bg.jpg" alt="Pulpit rock" width="100%" height="200px">
-</div>
-<jsp:include page="item_TopNavbar.jsp"/>
+<%--<jsp:include page="item_TopNavbar.jsp"/>--%>
 
 
 <div id="demo" class="carousel slide" data-ride="carousel">
@@ -83,56 +81,49 @@
     <a class="carousel-control-next" href="#demo" data-slide="next">
         <span class="carousel-control-next-icon"></span>
     </a>
-
-</div>
-
-
-<div class="container" style="margin-top:30px">
-    <div class="row">
-        <section class="pc-banner">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide-center none-effect">
-                        <a href="#">
-                            <img src="http://148.70.108.65:8080/LogAssist/img/logo.gif">
-                        </a>
-                        <div class="layer-mask"></div>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="img/banner002.jpg">
-                        </a>
-                        <div class="layer-mask"></div>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="img/banner003.jpg">
-                        </a>
-                        <div class="layer-mask"></div>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="img/banner004.jpg">
-                        </a>
-                        <div class="layer-mask"></div>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <img src="img/banner005.jpg">
-                        </a>
-                        <div class="layer-mask"></div>
-                    </div>
-                </div>
-                <div class="button">
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-        </section>
-
+    <!-- 控制按钮 -->
+    <div style="text-align:center;">
+        <input type="button" class="btn start-slide" value="Start">
+        <input type="button" class="btn pause-slide" value="Pause">
+        <input type="button" class="btn prev-slide" value="Previous Slide">
+        <input type="button" class="btn next-slide" value="Next Slide">
+        <input type="button" class="btn slide-one" value="Slide 1">
+        <input type="button" class="btn slide-two" value="Slide 2">
+        <input type="button" class="btn slide-three" value="Slide 3">
     </div>
 </div>
 
+
+<script>
+    $(function(){
+        // 初始化轮播
+        $(".start-slide").click(function(){
+            $("#myCarousel").carousel('cycle');
+        });
+        // 停止轮播
+        $(".pause-slide").click(function(){
+            $("#myCarousel").carousel('pause');
+        });
+        // 循环轮播到上一个项目
+        $(".prev-slide").click(function(){
+            $("#myCarousel").carousel('prev');
+        });
+        // 循环轮播到下一个项目
+        $(".next-slide").click(function(){
+            $("#myCarousel").carousel('next');
+        });
+        // 循环轮播到某个特定的帧
+        $(".slide-one").click(function(){
+            $("#myCarousel").carousel(0);
+        });
+        $(".slide-two").click(function(){
+            $("#myCarousel").carousel(1);
+        });
+        $(".slide-three").click(function(){
+            $("#myCarousel").carousel(2);
+        });
+    });
+</script>
 
 <!-- 底部布局-->
 <div class="jumbotron text-center" style="margin-bottom:0">
