@@ -127,34 +127,7 @@
 
 
 <!-- 底部布局-->
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="item_foot.jsp"/>
 
 <%--<table border="0" bgcolor="ccceee" width="750" style="height: 161px;">
     <tr bgcolor="CCCCCC" align="center">

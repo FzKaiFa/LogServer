@@ -51,47 +51,81 @@
 <h5 ><%=tips%></h5>--%>
 <%--<jsp:include page="item_TopNavbar.jsp"/>--%>
 
-
-<div id="demo" class="carousel slide" data-ride="carousel">
-
-    <!-- 指示符 -->
-    <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-
-    <!-- 轮播图片 -->
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="img/ztkj.jpg">
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h3 class="card-text">深圳市方左科技有限公司aaaa</h3>
+                    <p class="card-text"></p>
+                    <p class="card-text">企业类型：有限责任公司</p>
+                    <p class="card-text">主营产品：金蝶PDA|PDA软件定制开发|条码采集软件程序开发</p>
+                    <p class="card-text">公司地址：广东省深圳市罗湖区</p>
+                    <p class="card-text">联系电话：邱经理 18319928705</p>
+                    <!-- <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> -->
+                </div>
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="img/jjfa.jpg">
-        </div>
-        <div class="carousel-item">
-            <img src="img/lc.jpg">
-        </div>
-    </div>
+        <%--<div class="col-md-6">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <!-- 指示符 -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
 
-    <!-- 左右切换按钮 -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-    <!-- 控制按钮 -->
-    <div style="text-align:center;">
-        <input type="button" class="btn start-slide" value="Start">
-        <input type="button" class="btn pause-slide" value="Pause">
-        <input type="button" class="btn prev-slide" value="Previous Slide">
-        <input type="button" class="btn next-slide" value="Next Slide">
-        <input type="button" class="btn slide-one" value="Slide 1">
-        <input type="button" class="btn slide-two" value="Slide 2">
-        <input type="button" class="btn slide-three" value="Slide 3">
+                <!-- 轮播图片 -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/ztkj.jpg">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/jjfa.jpg">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/lc.jpg">
+                    </div>
+                </div>
+
+                <!-- 左右切换按钮 -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+                <!-- 控制按钮 -->
+                <div style="text-align:center;">
+                    <input type="button" class="btn start-slide" value="Start">
+                    <input type="button" class="btn pause-slide" value="Pause">
+                    <input type="button" class="btn prev-slide" value="Previous Slide">
+                    <input type="button" class="btn next-slide" value="Next Slide">
+                    <input type="button" class="btn slide-one" value="Slide 1">
+                    <input type="button" class="btn slide-two" value="Slide 2">
+                    <input type="button" class="btn slide-three" value="Slide 3">
+                </div>
+            </div>
+
+        </div>--%>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-text">深圳市方左科技有限公司</h3>
+                    <p class="card-text"></p>
+                    <p class="card-text">企业类型：有限责任公司</p>
+                    <p class="card-text">主营产品：金蝶PDA|PDA软件定制开发|条码采集软件程序开发</p>
+                    <p class="card-text">公司地址：广东省深圳市罗湖区</p>
+                    <p class="card-text">联系电话：邱经理 18319928705</p>
+                    <!-- <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> -->
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 
 
 <script>
@@ -126,34 +160,7 @@
 </script>
 
 <!-- 底部布局-->
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="item_foot.jsp"/>
 
 <%--<table border="0" bgcolor="ccceee" width="750" style="height: 161px;">
     <tr bgcolor="CCCCCC" align="center">

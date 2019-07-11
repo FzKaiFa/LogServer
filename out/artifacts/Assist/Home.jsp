@@ -25,6 +25,7 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/home_style.css">
 </head>
 <body>
 
@@ -42,68 +43,96 @@
     String tips = (String) request.getAttribute("tips");
 %>
 <h5 ><%=tips%></h5>--%>
-<div style="width: auto;height: auto;">
-    <img src="http://148.70.108.65:8080/LogAssist/img/bg.jpg" alt="Pulpit rock" width="100%" height="200px">
-</div>
-<%--<jsp:include page="item_TopNavbar.jsp"/>--%>
-<div class="container" style="margin-top:30px">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-text">深圳市方左科技有限公司</h3>
-                    <p class="card-text"></p>
-                    <p class="card-text">企业类型：有限责任公司</p>
-                    <p class="card-text">主营产品：金蝶PDA|PDA软件定制开发|条码采集软件程序开发</p>
-                    <p class="card-text">公司地址：广东省深圳市罗湖区</p>
-                    <p class="card-text">联系电话：邱经理 18319928705</p>
-                    <!-- <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a> -->
-                </div>
-            </div>
-
-
-        </div>
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-text">公司介绍</h3>
-                    <p class="card-text"></p>
-                    <p class="card-text">本公司位于广东深圳市罗湖区,常年对外销售金蝶PDA、PDA软件定制开发、条码采集软件程序开发等产品,公司秉承以用户需求为核心，坚持“质量到位、服务一流”的经营理念,在数码、电脑－条码设备行业获得了客户的一致认可和高度评价,公司以为客户创造价值为己任，期待为您服务！</p>
-                </div>
-            </div>
+    <div style="width: auto;height: auto;">
+        <img src="img/home_top.png" alt="Pulpit rock" width="auto" height="400px">
     </div>
-</div>
-
-<!-- 底部布局-->
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-            </div>
-            <div class="col-sm-4">
-                <h3> 关于我们</h3>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
-                <li>公司介绍</li>
+    <div class="row" style="margin: 50px">
+        <div class="column">
+            <img class="column2" style="margin-right: 50px" src="img/ztkj.jpg" alt="#">
+        </div>
+        <div class="column card">
+            <div class="card-body">
+                <h3 class="card-text">整体框架</h3>
+                <p class="card-text"></p>
+                <p class="card-text">企业类型：有限责任公司</p>
+                <p class="card-text">主营产品：金蝶PDA|PDA软件定制开发|条码采集软件程序开发</p>
+                <p class="card-text">公司地址：广东省深圳市罗湖区</p>
+                <p class="card-text">联系电话：邱经理 18319928705</p>
+                <p class="card-text">深圳方左科技有限公司，简称（方左技术）专业从事于企业可视化移动条码采集信息化精益管理整体解决方案
+                    ，方左技术以其贴近用户的差异化创新、立志在***短时间内成为市面上价值服务宗旨的管理方案专家，以持之以恒的科研投入、严格有效的质量控制、快捷放心的售后服务，
+                    方左技术坚持以技术创新为持续发展之根本，秉承“人才，团队，管理，技术”的核心管理理念，方左技术将继续坚持以更贴合业务的解决方案、
+                    更高质量的产品和更快捷放心的服务回报客户，为客户提供贴身、完整的可视化移动条码采集精益管理应用解决方案，不断帮助客户创造价值，成为您身边的精益生产管理专家</p>
+                <!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
             </div>
         </div>
     </div>
-</div>
+    <div class="row" style="margin: 50px">
+        <div class="column">
+            <img class="column2" style="margin-right: 50px" src="img/lc.jpg" alt="#">
+        </div>
+        <div class="column card">
+            <div class="card-body">
+                <h3 class="card-text">解决方案</h3>
+                <p class="card-text"></p>
+                <p class="card-text">企业类型：有限责任公司</p>
+                <p class="card-text">主营产品：金蝶PDA|PDA软件定制开发|条码采集软件程序开发</p>
+                <p class="card-text">公司地址：广东省深圳市罗湖区</p>
+                <p class="card-text">联系电话：邱经理 18319928705</p>
+                <!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 50px">
+        <div class="column">
+            <img class="column2" style="margin-right: 50px" src="img/jjfa.jpg" alt="#">
+        </div>
+        <div class="column card">
+            <div class="card-body">
+                <h3 class="card-text">整体框架</h3>
+                <p class="card-text"></p>
+                <p class="card-text">企业类型：有限责任公司</p>
+                <p class="card-text">主营产品：金蝶PDA|PDA软件定制开发|条码采集软件程序开发</p>
+                <p class="card-text">公司地址：广东省深圳市罗湖区</p>
+                <p class="card-text">联系电话：邱经理 18319928705</p>
+                <!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
+            </div>
+        </div>
+    </div>
+
+<jsp:include page="item_foot.jsp"/>
+
+<%--<!-- 底部布局-->--%>
+<%--<div class="jumbotron text-center" style="margin-bottom:0">--%>
+    <%--<div class="container">--%>
+        <%--<div class="row">--%>
+            <%--<div class="col-sm-4">--%>
+                <%--<h3> 关于我们</h3>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+            <%--</div>--%>
+
+            <%--<div class="col-sm-4">--%>
+                <%--<h3> 关于我们</h3>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+            <%--</div>--%>
+            <%--<div class="col-sm-4">--%>
+                <%--<h3> 关于我们</h3>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+                <%--<li>公司介绍</li>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <%--<table border="0" bgcolor="ccceee" width="750" style="height: 161px;">
     <tr bgcolor="CCCCCC" align="center">
