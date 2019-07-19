@@ -38,9 +38,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="Home.jsp" target="index_show">首页</a>
             </li>
-            <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="Case.jsp" target="index_show">案例</a>--%>
-            <%--</li>--%>
+            <li class="nav-item">
+                <a class="nav-link" href="Case.jsp" target="index_show">产品中心</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="FeedBack.jsp" target="index_show">联系</a>
             </li>
