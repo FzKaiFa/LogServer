@@ -43,6 +43,10 @@
 %>
 <h5 ><%=tips%></h5>--%>
 <%--<jsp:include page="item_TopNavbar.jsp"/>--%>
+
+<div style="width: auto;height: auto;">
+    <img src="img/home_top.png" alt="Pulpit rock" width="auto" height="400px">
+</div>
 <div class="container" style="margin-top:30px">
     <div class="row">
         <div class="col-sm-4">
