@@ -3,6 +3,7 @@ package Bean;
 public class Company {
     public int id;//公司名称
     public String CompanyName;//公司名称
+    public String AppVersion;//金蝶版本
     public String KingdeeVersion;//金蝶版本
     public String AppID;//程序id
     public String Img_Logo;//备注
