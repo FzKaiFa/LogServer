@@ -14,7 +14,6 @@
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <user-name>sa</user-name>
-      <introspection-schemas>@:@|AIS20180228114537:</introspection-schemas>
     </data-source>
   </component>
 </project>

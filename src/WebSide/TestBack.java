@@ -1,10 +1,9 @@
 package WebSide;
 
 import Bean.BackData;
-import Utils.CommonJson;
 import Utils.HttpRequestUtils;
-import Utils.JDBCUtil;
 import Utils.Lg;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 用于更新时间控制表的当前时间
@@ -31,8 +25,10 @@ public class TestBack extends HttpServlet {
         Lg.e("到达TestBack"+paramter);
         String url = "http://oa.o-in.me:9001/ena13_manages/"+paramter+".json";
         String getJson = HttpRequestUtils.sendGet(url);
+        BackData iBean = new Gson().fromJson(getJson,BackData.class);
         Lg.e("得到json数据",getJson);
-        request.setAttribute("jsonback", new BackData(getJson));
+        Lg.e("得到json数据",iBean);
+        request.setAttribute("jsonback", iBean);
         request.getRequestDispatcher("testMsgResult.jsp").forward(request, response);
 
     }

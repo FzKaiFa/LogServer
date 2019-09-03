@@ -48,7 +48,10 @@
                 BackData list =(BackData)request.getAttribute("jsonback");
             %>
             <h1>返回结果：</h1>
-            <h1> <%=list.getFString() %></h1>
+            <h1>物料名称： <%=list.getProduct_name() %></h1>
+            <h1>物料型号： <%=list.getProduct() %></h1>
+            <h1>代码： <%=list.getEna13() %></h1>
+            <h1>创建时间： <%=list.getCreated_at() %></h1>
 
             <%--<table class="table">--%>
                 <%--<thead>--%>

@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<jsp:include page="headLayout.jsp"/>
 <%--
 <%
     WebDao aa = new WebDao();
