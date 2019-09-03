@@ -41,7 +41,7 @@
 <h5 ><%=tips%></h5>--%>
 
 
-<div class="container">
+<div class="container" style="margin-top: 36px">
     <div  class="card">
         <div class="card-body">
             <%
@@ -52,7 +52,9 @@
             <h1>物料型号： <%=list.getProduct() %></h1>
             <h1>代码： <%=list.getEna13() %></h1>
             <h1>创建时间： <%=list.getCreated_at() %></h1>
-
+            <form name="form" method="post" action="testMsg.jsp">
+                <button type="submit" class="btn btn-primary">返回</button>
+            </form>
             <%--<table class="table">--%>
                 <%--<thead>--%>
                 <%--<tr>--%>

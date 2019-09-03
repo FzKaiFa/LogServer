@@ -44,18 +44,18 @@
             </ul>
         </div>--%>
     </nav>
-    <div class="container">
-        <div  style="width: auto;height: auto;margin-top: 50px;margin-bottom: 50px">
-            <div class="input-group">
-                <input type="text" class="form-control">
-                <span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							Go!
-						</button>
-					</span>
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-    </div>
+    <%--<div class="container">--%>
+        <%--<div  style="width: auto;height: auto;margin-top: 50px;margin-bottom: 50px">--%>
+            <%--<div class="input-group">--%>
+                <%--<input type="text" class="form-control">--%>
+                <%--<span class="input-group-btn">--%>
+						<%--<button class="btn btn-default" type="button">--%>
+							<%--Go!--%>
+						<%--</button>--%>
+					<%--</span>--%>
+            <%--</div><!-- /input-group -->--%>
+        <%--</div><!-- /.col-lg-6 -->--%>
+    <%--</div>--%>
 
 
 </div>

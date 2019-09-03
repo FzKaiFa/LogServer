@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+
+<jsp:include page="headLayout.jsp"/>
 <%--
 <%
     WebDao aa = new WebDao();
@@ -40,7 +42,7 @@
 <h5 ><%=tips%></h5>--%>
 
 
-<div class="container">
+<div class="container" style="margin-top: 36px">
     <div  class="card">
         <div class="card-body">
             <form action="TestBack" method="post">
