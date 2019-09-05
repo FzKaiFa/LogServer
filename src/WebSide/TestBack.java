@@ -1,6 +1,6 @@
 package WebSide;
 
-import Bean.BackData;
+import Bean.BackDataList;
 import Utils.HttpRequestUtils;
 import Utils.Lg;
 import com.google.gson.Gson;
@@ -23,12 +23,14 @@ public class TestBack extends HttpServlet {
         Lg.e("到达TestBack");
         String paramter = request.getParameter("name");
         Lg.e("到达TestBack"+paramter);
-        String url = "http://oa.o-in.me:9001/ena13_manages/"+paramter+".json";
+//        String url = "http://oa.o-in.me:9001/ena13_manages/"+paramter+".json";
+        String url = "http://oa.o-in.me:9001/repairs/history.json?code="+paramter;
         String getJson = HttpRequestUtils.sendGet(url);
-        BackData iBean = new Gson().fromJson(getJson,BackData.class);
-        Lg.e("得到json数据",getJson);
-        Lg.e("得到json数据",iBean);
-        request.setAttribute("jsonback", iBean);
+        Lg.e("得到数据",getJson);
+        BackDataList list = new Gson().fromJson(getJson, BackDataList.class);
+//        BackData[] iBean = new Gson().fromJson(getJson,BackData[].class);
+        Lg.e("得到json数据",list);
+        request.setAttribute("jsonback", list);
         request.getRequestDispatcher("testMsgResult.jsp").forward(request, response);
 
     }

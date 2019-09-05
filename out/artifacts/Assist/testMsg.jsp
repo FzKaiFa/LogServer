@@ -11,7 +11,7 @@
 <%@ page import="com.sun.org.apache.xpath.internal.operations.String" %>
 <html>
 <head>
-    <title>注册用户管理</title>
+    <title>查询维修历史</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -43,12 +43,13 @@
 
 
 <div class="container" style="margin-top: 36px">
-    <div  class="card">
-        <div class="card-body">
+    <div  class="card col-xs-12">
+        <div class="card-body col-xs-12">
             <form action="TestBack" method="post">
                 <div class="form-group">
                     <a for="email">输入查询ID</a>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" VALUE="5d3ed4e248502d035b4f0200">
+                    <%--<input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" VALUE="5d3ed4e248502d035b4f0200">--%>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" VALUE="056518C19Y0208">
                 </div>
                 <div class="form-check">
                     <!-- <label class="form-check-label">

@@ -9,9 +9,10 @@
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page import="Bean.BackData" %>
+<%@ page import="Bean.BackDataList" %>
 <html>
 <head>
-    <title>注册用户管理</title>
+    <title>查询维修历史</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -44,17 +45,29 @@
 <div class="container" style="margin-top: 36px">
     <div  class="card">
         <div class="card-body">
-            <%
-                BackData list =(BackData)request.getAttribute("jsonback");
-            %>
-            <h1>返回结果：</h1>
-            <h1>物料名称： <%=list.getProduct_name() %></h1>
-            <h1>物料型号： <%=list.getProduct() %></h1>
-            <h1>代码： <%=list.getEna13() %></h1>
-            <h1>创建时间： <%=list.getCreated_at() %></h1>
             <form name="form" method="post" action="testMsg.jsp">
                 <button type="submit" class="btn btn-primary">返回</button>
             </form>
+
+            <%
+                BackDataList list =(BackDataList)request.getAttribute("jsonback");
+            %><h1>返回结果：<%=list.getSize()%></h1>
+            <hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+            <%
+                for (int i = 0; i < list.getSize() ; i++) {
+
+            %>
+            <h1>客户名称： <%=list.getRes().get(i).getCustomer() %></h1>
+            <h1>客户电话： <%=list.getRes().get(i).getTel() %></h1>
+            <h1>异常描述： <%=list.getRes().get(i).getDescription() %></h1>
+            <h1>处理方案： <%=list.getRes().get(i).getTreatment_program() %></h1>
+            <h1>责任归属： <%=list.getRes().get(i).getResponsibility() %></h1>
+            <h1>维修编号： <%=list.getRes().get(i).getRepair_code() %></h1>
+            <h1>维修人员： <%=list.getRes().get(i).getTabulation() %></h1>
+            <h1>入库时间： <%=list.getRes().get(i).getStorage_time() %></h1>
+            <hr style="height:1px;border:none;border-top:1px solid #555555;" />
+            <%}%>
             <%--<table class="table">--%>
                 <%--<thead>--%>
                 <%--<tr>--%>

@@ -1,15 +1,6 @@
 package Bean;
 
 public class BackData {
-    public String product_name;
-    public String product;
-    public String ena13;
-    public String remark;
-    public String created_at;
-    public String updated_at;
-    public InnerID id;
-    public String FString;
-
 
     //http://oa.o-in.me:9001/repairs/history.json?code=
     /*
@@ -32,91 +23,72 @@ public class BackData {
     public String description;//异常描述
     public String treatment_program;//处理方案
     public String responsibility;//责任归属
-    public String repair_code;//维修编号
+    public int repair_code;//维修编号
     public String tabulation;//维修人员
-    public String storage;//入库时间
+    public String storage_time;//入库时间
 
-
-
-    public BackData(String FString) {
-        this.FString = FString;
+    public String getCustomer() {
+        return customer;
     }
 
-    public String getFString() {
-        return FString;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getTel() {
+        return tel;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getProduct() {
-        return product;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getEna13() {
-        return ena13;
+    public String getTreatment_program() {
+        return treatment_program;
     }
 
-    public void setEna13(String ena13) {
-        this.ena13 = ena13;
+    public void setTreatment_program(String treatment_program) {
+        this.treatment_program = treatment_program;
     }
 
-    public String getRemark() {
-        return remark;
+    public String getResponsibility() {
+        return responsibility;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setResponsibility(String responsibility) {
+        this.responsibility = responsibility;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public int getRepair_code() {
+        return repair_code;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setRepair_code(int repair_code) {
+        this.repair_code = repair_code;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
+    public String getTabulation() {
+        return tabulation;
     }
 
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
+    public void setTabulation(String tabulation) {
+        this.tabulation = tabulation;
     }
 
-    public InnerID getId() {
-        return id;
+    public String getStorage_time() {
+        return storage_time;
     }
 
-    public void setId(InnerID id) {
-        this.id = id;
-    }
-
-    public void setFString(String FString) {
-        this.FString = FString;
-    }
-
-
-    public class InnerID{
-        public String $oid;
-
-        public String get$oid() {
-            return $oid;
-        }
-
-        public void set$oid(String $oid) {
-            this.$oid = $oid;
-        }
+    public void setStorage_time(String storage_time) {
+        this.storage_time = storage_time;
     }
 
 
