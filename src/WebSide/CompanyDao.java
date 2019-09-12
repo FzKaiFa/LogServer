@@ -28,6 +28,7 @@ public class CompanyDao {
 	PreparedStatement sta = null;
 	ResultSet rs = null;
 
+	//获取所有公司信息
 	public List<Company> getCompany(){
 		List<Company> list = new ArrayList<>();
 		try {
@@ -50,6 +51,7 @@ public class CompanyDao {
 				bean.Address = rs.getString("Address");
 				list.add(bean);
 			}
+			Lg.e("得到公司列表",list);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -60,6 +62,41 @@ public class CompanyDao {
 		return list;
 	}
 
+	//获取所有公司信息
+	public List<Company> findCompany(String appid){
+		List<Company> list = new ArrayList<>();
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String SQL = "SELECT * FROM Tb_Company WHERE AppID='"+appid+"' ORDER BY cid DESC ";
+			sta = conn.prepareStatement(SQL);
+			rs = sta.executeQuery();
+			while (rs.next()) {
+				Company bean = new Company();
+				bean.id = rs.getInt("cid");
+				bean.CompanyName = rs.getString("CompanyName");
+				bean.AppVersion = rs.getString("App_Version");
+				bean.KingdeeVersion = rs.getString("Kd_Version");
+				bean.AppID = rs.getString("AppID");
+				bean.Remark = rs.getString("Remark");
+				bean.Img_Logo = rs.getString("Img_Logo");
+				bean.CanUse = rs.getString("CanUse");
+				bean.EndTime = rs.getString("EndTime_server");
+				bean.Phone = rs.getString("Phone");
+				bean.Address = rs.getString("Address");
+				list.add(bean);
+			}
+			Lg.e("通过appid找到公司列表",list);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return list;
+	}
+
+	//添加公司信息
 	public boolean addCompany(Company company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
