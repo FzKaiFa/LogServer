@@ -33,24 +33,63 @@
     //获得number
     Company company = (Company) request.getAttribute("company");
 %>
-<div class="form-group">
-        <a for="email">姓名<%=company.getAppID()%></a>
-        <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
+<jsp:include page="../headLayout.jsp"/>
+
+<div class="container" style="margin-top: 88px">
+    <div  class="card" style="padding: 50px">
+        <form name="form" method="post" action="MGM/CompanyList.jsp" style="margin-bottom: 20px">
+            <button type="submit" class="btn btn-outline-primary">返回公司列表</button>
+        </form>
+        <form action="../CompanyChange" method="post">
+            <div class="form-group">
+                <a>公司名称</a>
+                <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
+                value="<%=company.getCompanyName()%>">
+            </div>
+            <div class="form-group">
+                <a>APP版本号:</a>
+                <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
+                       value="<%=company.getAppVersion()%>">
+            </div>
+            <div class="form-group">
+                <a>APPID:</a>
+                <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
+                       value="<%=company.getAppID()%>">
+            </div>
+            <div class="form-group">
+                <a >金蝶/ERP版本信息:</a>
+                <input type="text" class="form-control" id="kd_version" placeholder="Enter telephone" name="kd_version"
+                       value="<%=company.getKingdeeVersion()%>">
+            </div>
+            <div class="form-group">
+                <a >公司地址:</a>
+                <input type="text" class="form-control" id="address" placeholder="Enter telephone" name="address"
+                       value="<%=company.getAddress()%>">
+            </div>
+            <div class="form-group">
+                <a >电话:</a>
+                <input type="text" class="form-control" id="phone" placeholder="Enter telephone" name="phone"
+                       value="<%=company.getPhone()%>">
+            </div>
+            <div class="form-group">
+                <a >时间控制日期(20190101):</a>
+                <input type="text" class="form-control" id="end_time" placeholder="Enter telephone" name="end_time"
+                       value="<%=company.getEndTime()%>">
+            </div>
+            <div class="form-group">
+                <a >公司Logo:</a>
+                <input type="text" class="form-control" id="img_logo_url" placeholder="Enter telephone" name="img_logo_url"
+                       value="<%=company.getImg_Logo()%>">
+            </div>
+            <div class="form-group">
+                <a >备注:</a>
+                <input type="text" class="form-control" id="remark" placeholder="Enter telephone" name="remark"
+                       value="<%=company.getAppID()%>">
+            </div>
+            <button type="submit" class="btn btn-primary">确定修改</button>
+        </form>
     </div>
-    <div class="form-group">
-        <a for="pwd">电话:</a>
-        <input type="text" class="form-control" id="phone" placeholder="Enter telephone" name="phone">
-    </div>
-    <div class="form-group">
-        <a for="pwd">更新信息:</a>
-        <input type="text" class="form-control" id="jieguo" placeholder="显示结果" name="phone">
-    </div>
-    <%--<a><% CT} %></a>--%>
-    <div id="myDiv"></div>
-    <button class="btn btn-primary" onclick="loadXMLDoc()">确定</button>
-    <%--<button type="submit" class="btn btn-primary" onclick="loadXMLDoc()">确定</button>--%>
-    <%--</form>--%>
-    </div>
+</div>
 
 </body>
 

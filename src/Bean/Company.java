@@ -12,7 +12,31 @@ public class Company {
     public String Remark;//备注
     public String EndTime;//终止日期格式： 20120101
     public String CanUse;//0；允许使用，1停止使用
+    public String create_time;//创建日期
+//    public String CreateTime;//创建日期
 
+    public Company(String companyName, String appVersion, String kingdeeVersion, String appID, String img_Logo, String phone, String address, String remark, String endTime, String canUse, String createTime) {
+        CompanyName = companyName;
+        AppVersion = appVersion;
+        KingdeeVersion = kingdeeVersion;
+        AppID = appID;
+        Img_Logo = img_Logo;
+        Phone = phone;
+        Address = address;
+        Remark = remark;
+        EndTime = endTime;
+        CanUse = canUse;
+        create_time = createTime;
+    }
+    public Company() {
+    }
+    public String getCreateTime() {
+        return create_time;
+    }
+
+    public void setCreateTime(String createTime) {
+        create_time = createTime;
+    }
 
     public int getId() {
         return id;

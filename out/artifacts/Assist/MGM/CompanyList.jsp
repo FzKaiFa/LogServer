@@ -43,7 +43,10 @@
 <h5 ><%=tips%></h5>--%>
 
 
-<div class="container">
+<div class="container" style="margin-top: 88px">
+    <form name="form" method="post" action="Company_create.jsp" style="margin-bottom: 20px">
+        <button type="submit" class="btn btn-outline-primary">新增项目信息</button>
+    </form>
     <div  class="card">
         <div class="card-body">
             <table class="table">

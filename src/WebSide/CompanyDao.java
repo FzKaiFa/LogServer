@@ -49,6 +49,7 @@ public class CompanyDao {
 				bean.EndTime = rs.getString("EndTime_server");
 				bean.Phone = rs.getString("Phone");
 				bean.Address = rs.getString("Address");
+				bean.create_time = rs.getString("create_time");
 				list.add(bean);
 			}
 			Lg.e("得到公司列表",list);
@@ -83,6 +84,7 @@ public class CompanyDao {
 				bean.EndTime = rs.getString("EndTime_server");
 				bean.Phone = rs.getString("Phone");
 				bean.Address = rs.getString("Address");
+				bean.create_time = rs.getString("create_time");
 				list.add(bean);
 			}
 			Lg.e("通过appid找到公司列表",list);
@@ -100,7 +102,7 @@ public class CompanyDao {
 	public boolean addCompany(Company company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
-			String SQL = "INSERT INTO Tb_Company (CompanyName, App_Version,Kd_Version,AppID,Phone,Address,Remark,EndTime_Server,Img_Logo,CanUse) VALUES (?,?,?,?,?,?,?,?,?,?)";
+			String SQL = "INSERT INTO Tb_Company (CompanyName, App_Version,Kd_Version,AppID,Phone,Address,Remark,EndTime_Server,Img_Logo,CanUse,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,company.CompanyName);
 			sta.setString(2,company.AppVersion);
@@ -112,6 +114,7 @@ public class CompanyDao {
 			sta.setString(8,company.EndTime);
 			sta.setString(9,company.Img_Logo);
 			sta.setString(10,company.CanUse);
+			sta.setString(11,company.create_time);
 			int i = sta.executeUpdate();
 			if(i>0){
 				return true;
