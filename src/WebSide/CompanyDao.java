@@ -4,7 +4,6 @@ import Bean.Company;
 import Bean.FeedBackBean;
 import Utils.JDBCUtil;
 import Utils.Lg;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,6 +60,25 @@ public class CompanyDao {
 			JDBCUtil.close(rs,sta,conn);
 		}
 		return list;
+	}
+	public String getCompanyNum(){
+		String num="";
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String SQL = "SELECT COUNT(*) AS 数量 FROM Tb_Company";
+			sta = conn.prepareStatement(SQL);
+			rs = sta.executeQuery();
+			while (rs.next()) {
+				num = rs.getString("数量");
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return num;
 	}
 
 	//获取所有公司信息
