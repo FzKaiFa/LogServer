@@ -28,13 +28,15 @@
     <link rel="stylesheet" href="../css/colors.css">
 </head>
 <body class="mgm_bg">
-    <img src="../img/logo.gif" alt="">
+    <%--<img src="../img/logo.gif" alt="" onclick="location.href='Mgm_Right CompanyList.jsp'">--%>
+    <a href = 'item_Right_mgm.jsp' target = 'Mgm_Right'><img src="../img/logo.gif" alt=""></a>
     <img src="../img/bt_set_fc.png" alt="" >
         <a class="box" href="CompanyList.jsp" target="Mgm_Right">项目管理</a><br><br>
     <img src="../img/bt_set_fc.png" alt="">
         <a class="box" href="../registerMsg.jsp" target="Mgm_Right">注册表</a><br><br>
     <img src="../img/bt_set_fc.png" alt="">
         <a class="box" href="../testMsg.jsp" target="Mgm_Right">首页</a><br><br>
+
 </body>
 
 

@@ -11,6 +11,7 @@
 <%@ page import="com.sun.org.apache.xpath.internal.operations.String" %>
 <%@ page import="WebSide.CompanyDao" %>
 <%@ page import="Bean.Company" %>
+<%@ page import="Utils.BaseData" %>
 <html>
 <head>
     <title>注册用户管理</title>
@@ -44,9 +45,7 @@
 
 
 <div class="container" style="margin-top: 88px">
-    <form name="form" method="post" action="Company_create.jsp" style="margin-bottom: 20px">
-        <button type="submit" class="btn btn-outline-primary">新增项目信息</button>
-    </form>
+    <button type="button" class="btn btn-outline-primary" value="新增项目信息" onclick="location.href='Company_create.jsp'">新增项目信息</button>
     <div  class="card">
         <div class="card-body">
             <table class="table">
@@ -64,6 +63,10 @@
                     CompanyDao aa = new CompanyDao();
 //    List list = (List) request.getAttribute("pl_list");
                     List list = aa.getCompany();
+                    if (list==null){
+                        %><div class="alert alert-info"> 列表数据为空</div><%
+                        return;
+                    }
                     for (int i = 0; i < list.size(); i++) {
                         Company rs = (Company) list.get(i);
                 %>

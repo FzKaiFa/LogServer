@@ -61,6 +61,7 @@ public class CompanyDao {
 		}
 		return list;
 	}
+	//获取公司项目数量
 	public String getCompanyNum(){
 		String num="";
 		try {
@@ -149,16 +150,15 @@ public class CompanyDao {
 		return false;
 	}
 
-	public void deleteUser(String user){
+	public boolean deleteCompany(String appid){
 		try {
-			conn = JDBCUtil.getSQLiteConn1();
-			String SQL = "DELETE Register_code="+user+" FROM REGISTER";
+			conn = JDBCUtil.getSQLite4Company();
+			String SQL = "DELETE FROM Tb_Company WHERE AppID = '"+appid+"'";
+			Lg.e("删除项目："+SQL);
 			sta = conn.prepareStatement(SQL);
 			boolean b = sta.execute();
 			Lg.e("删除",b);
-			if (!b){
-//                response.sendRedirect("error.jsp");
-			}
+			return b;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -166,6 +166,7 @@ public class CompanyDao {
 		}finally {
 			JDBCUtil.close(rs,sta,conn);
 		}
+		return false;
 	}
 
 	public List<FeedBackBean> getFeedBack(){

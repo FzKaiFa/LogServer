@@ -28,12 +28,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="../headLayout.jsp"/>
 <%
     CompanyDao aa = new CompanyDao();
 //    List list = (List) request.getAttribute("pl_list");
     String companyNum = aa.getCompanyNum();
 
 %>
+
+<input type="button" class="btn btn-outline-primary"  value="刷新" onclick="window.location.reload();"/>
 <div class="container" style="margin-top:30px">
     <div class="row">
 
@@ -42,7 +45,7 @@
             <div class="card-body">
                 <%--<button type="submit" class="btn btn-primary"><a class="box" style="color: black" href="Case.jsp" target="ManageRight">首页</a></button>--%>
 
-                <h3 class="card-text"><a class="box" href="Home.jsp" target="ManageRight">欢迎来到项目管理系统<%=companyNum%></a></h3>
+                <h3 class="card-text"><a class="box" href="CompanyList.jsp" target="Mgm_Right">欢迎来到项目管理系统<%=companyNum%></a></h3>
                 <%--<a href="#" class="card-link">Another link</a>--%>
             </div>
         </div>

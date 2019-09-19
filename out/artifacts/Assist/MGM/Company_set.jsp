@@ -13,6 +13,7 @@
 <%@ page import="Utils.Lg" %>
 <%@ page import="WebSide.CompanyDao" %>
 <%@ page import="Bean.Company" %>
+<%@ page import="Utils.HttpRequestUtils" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,8 +29,11 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
+
 <body>
+
 <%
+    CompanyDao companyDao = new CompanyDao();
     //获得number
     Company company = (Company) request.getAttribute("company");
 %>
@@ -37,24 +41,25 @@
 
 <div class="container" style="margin-top: 88px">
     <div  class="card" style="padding: 50px">
-        <form name="form" method="post" action="MGM/CompanyList.jsp" style="margin-bottom: 20px">
-            <button type="submit" class="btn btn-outline-primary">返回公司列表</button>
-        </form>
+        <h5 id="tips" name="tipss">提示</h5>
+        <%--<input type="button" value="更改提示" onclick="document.getElementById('tips').innerHTML = '删除成功'"/>--%>
+        <button type="button" class="btn btn-outline-primary" value="返回公司列表" onclick="location.href='MGM/CompanyList.jsp'">返回公司列表</button>
+        <div class="alert alert-info">信息！请注意这个信息。</div>
         <form action="../CompanyChange" method="post">
             <div class="form-group">
                 <a>公司名称</a>
                 <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
                 value="<%=company.getCompanyName()%>">
             </div>
-            <div class="form-group">
+            <div class="form-group" role="toolbar">
                 <a>APP版本号:</a>
                 <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
                        value="<%=company.getAppVersion()%>">
-            </div>
-            <div class="form-group">
                 <a>APPID:</a>
                 <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
                        value="<%=company.getAppID()%>">
+            </div>
+            <div class="form-group">
             </div>
             <div class="form-group">
                 <a >金蝶/ERP版本信息:</a>
@@ -84,13 +89,46 @@
             <div class="form-group">
                 <a >备注:</a>
                 <input type="text" class="form-control" id="remark" placeholder="Enter telephone" name="remark"
-                       value="<%=company.getAppID()%>">
+                       value="<%=company.getRemark()%>">
             </div>
             <button type="submit" class="btn btn-primary">确定修改</button>
         </form>
+        <%--<form action="../company_delete" method="post">--%>
+            <%--<input type="text" class="form-control" id="app_id2" placeholder="Enter telephone" name="app_id"--%>
+                   <%--value="<%=company.getAppID()%>">--%>
+            <%--<button  type="submit" class="btn btn-primary">删除公司</button>--%>
+        <%--</form>--%>
+        <a href="company_delete?json=<%=company.getAppID()%>">删除</a>
     </div>
 </div>
 
+
+<%--<script type="text/javascript">--%>
+    <%--ddd.onclick =function deleteCp(){--%>
+        <%--console.log("进入方法");--%>
+        <%--document.getElementById('tips').innerHTML = '删除成功'--%>
+        <%--<%--%>
+            <%--String backTip =HttpRequestUtils.sendGet("http://localhost:8084/Assist/company_delete?json="+company.getAppID());--%>
+
+        <%--%>--%>
+        <%--&lt;%&ndash;&lt;%&ndash;%>--%>
+        <%--&lt;%&ndash;boolean okDelete = companyDao.deleteCompany(company.getAppID());&ndash;%&gt;--%>
+            <%--&lt;%&ndash;if (!okDelete){&ndash;%&gt;--%>
+
+                    <%--&lt;%&ndash;%>&ndash;%&gt;--%>
+<%--&lt;%&ndash;//        alert("删除成功");&ndash;%&gt;--%>
+        <%--&lt;%&ndash;window.self.location = "MGM/CompanyList.jsp";&ndash;%&gt;--%>
+<%--&lt;%&ndash;//        document.getElementById("tips").value = "删除成功"&ndash;%&gt;--%>
+        <%--&lt;%&ndash;&lt;%&ndash;%>--%>
+        <%--&lt;%&ndash;}else{&ndash;%&gt;--%>
+            <%--&lt;%&ndash;%>&ndash;%&gt;--%>
+
+        <%--&lt;%&ndash;window.self.location = "MGM/CompanyList.jsp";&ndash;%&gt;--%>
+        <%--&lt;%&ndash;alert("删除失败");&lt;%&ndash;%>--%>
+                            <%--&lt;%&ndash;}&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;%>&ndash;%&gt;--%>
+    <%--}--%>
+<%--</script>--%>
 </body>
 
 

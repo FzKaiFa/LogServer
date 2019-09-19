@@ -34,10 +34,12 @@
 
 <div class="container" style="margin-top: 88px">
     <div  class="card" style="padding: 50px">
-        <form name="form" method="post" action="CompanyList.jsp" style="margin-bottom: 20px">
-            <button type="submit" class="btn btn-outline-primary">返回公司列表</button>
-        </form>
+        <%--<form name="form" method="post" action="CompanyList.jsp" style="margin-bottom: 20px">--%>
+            <%--<button type="submit" class="btn btn-outline-primary">返回公司列表</button>--%>
+        <%--</form>--%>
         <form action="../UploadCompanyCreate" method="post">
+            <button type="submit" class="btn btn-primary">确定添加</button>
+        <button type="button" class="btn btn-outline-primary" value="返回公司列表" onclick="location.href='CompanyList.jsp'">返回公司列表</button>
             <div class="form-group">
                 <a for="email">公司名称</a>
                 <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
@@ -89,7 +91,6 @@
                   <input class="form-check-input" type="checkbox"> Remember me
                 </label> -->
             </div>
-            <button type="submit" class="btn btn-primary">确定添加</button>
         </form>
     </div>
 </div>
