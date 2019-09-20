@@ -40,27 +40,40 @@
 <jsp:include page="../headLayout.jsp"/>
 
 <div class="container" style="margin-top: 88px">
-    <div  class="card" style="padding: 50px">
-        <h5 id="tips" name="tipss">提示</h5>
+    <div  class="card">
+        <div class="card-header">
+            <button type="button" class="btn btn-outline-primary" value="返回公司列表" onclick="location.href='MGM/CompanyList.jsp'">返回公司列表</button>
+        </div>
         <%--<input type="button" value="更改提示" onclick="document.getElementById('tips').innerHTML = '删除成功'"/>--%>
-        <button type="button" class="btn btn-outline-primary" value="返回公司列表" onclick="location.href='MGM/CompanyList.jsp'">返回公司列表</button>
-        <div class="alert alert-info">信息！请注意这个信息。</div>
-        <form action="../CompanyChange" method="post">
-            <div class="form-group">
-                <a>公司名称</a>
-                <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
-                value="<%=company.getCompanyName()%>">
+        <%--<div class="alert alert-info">信息！请注意这个信息。</div>--%>
+        <form action="./CompanyChange" method="post" style="padding: 50px">
+            <button type="submit" class="btn btn-primary">确定修改</button>
+            <a href="company_delete?json=<%=company.getAppID()%>">删除</a>
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">公司名称:</a>
+                    <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
+                           value="<%=company.getCompanyName()%>" style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 50%">
+                    <a  style="margin-right: 20px">电话:</a>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter telephone" name="phone"
+                           value="<%=company.getPhone()%>" style="width: 100%;margin-right: 10px">
+                </div>
             </div>
-            <div class="form-group" role="toolbar">
-                <a>APP版本号:</a>
-                <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
-                       value="<%=company.getAppVersion()%>">
-                <a>APPID:</a>
-                <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
-                       value="<%=company.getAppID()%>">
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">APPID:</a>
+                    <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
+                           value="<%=company.getAppID()%>" style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 50%">
+                    <a  style="margin-right: 20px">APP版本号:</a>
+                    <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
+                           value="<%=company.getAppVersion()%>" style="width: 100%;margin-right: 10px">
+                </div>
             </div>
-            <div class="form-group">
-            </div>
+
             <div class="form-group">
                 <a >金蝶/ERP版本信息:</a>
                 <input type="text" class="form-control" id="kd_version" placeholder="Enter telephone" name="kd_version"
@@ -70,11 +83,6 @@
                 <a >公司地址:</a>
                 <input type="text" class="form-control" id="address" placeholder="Enter telephone" name="address"
                        value="<%=company.getAddress()%>">
-            </div>
-            <div class="form-group">
-                <a >电话:</a>
-                <input type="text" class="form-control" id="phone" placeholder="Enter telephone" name="phone"
-                       value="<%=company.getPhone()%>">
             </div>
             <div class="form-group">
                 <a >时间控制日期(20190101):</a>
@@ -88,17 +96,19 @@
             </div>
             <div class="form-group">
                 <a >备注:</a>
-                <input type="text" class="form-control" id="remark" placeholder="Enter telephone" name="remark"
-                       value="<%=company.getRemark()%>">
+                <%--<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"--%>
+                       <%--value="<%=company.getRemark()%>">--%>
+                <textarea class="form-control" rows="5" id="remark"  name="remark"><%=company.getRemark()%></textarea>
+
             </div>
-            <button type="submit" class="btn btn-primary">确定修改</button>
+
+
         </form>
         <%--<form action="../company_delete" method="post">--%>
             <%--<input type="text" class="form-control" id="app_id2" placeholder="Enter telephone" name="app_id"--%>
                    <%--value="<%=company.getAppID()%>">--%>
             <%--<button  type="submit" class="btn btn-primary">删除公司</button>--%>
         <%--</form>--%>
-        <a href="company_delete?json=<%=company.getAppID()%>">删除</a>
     </div>
 </div>
 

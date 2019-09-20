@@ -33,27 +33,38 @@
 <jsp:include page="../headLayout.jsp"/>
 
 <div class="container" style="margin-top: 88px">
-    <div  class="card" style="padding: 50px">
+    <div  class="card">
         <%--<form name="form" method="post" action="CompanyList.jsp" style="margin-bottom: 20px">--%>
             <%--<button type="submit" class="btn btn-outline-primary">返回公司列表</button>--%>
         <%--</form>--%>
-        <form action="../UploadCompanyCreate" method="post">
+            <div class="card-header">
+                <button type="button" class="btn btn-outline-primary" value="返回公司列表" onclick="location.href='CompanyList.jsp'">返回公司列表</button>
+            </div>
+        <form action="../UploadCompanyCreate" method="post" style="padding: 50px">
             <button type="submit" class="btn btn-primary">确定添加</button>
-        <button type="button" class="btn btn-outline-primary" value="返回公司列表" onclick="location.href='CompanyList.jsp'">返回公司列表</button>
-            <div class="form-group">
-                <a for="email">公司名称</a>
-                <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
-                value="">
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">公司名称:</a>
+                    <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
+                            style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 50%">
+                    <a  style="margin-right: 20px">电话:</a>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter telephone" name="phone"
+                           style="width: 100%;margin-right: 10px">
+                </div>
             </div>
-            <div class="form-group">
-                <a for="pwd">APP版本号:</a>
-                <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
-                       value="">
-            </div>
-            <div class="form-group">
-                <a for="pwd">APPID:</a>
-                <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
-                       value="">
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">APPID:</a>
+                    <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
+                           style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 50%">
+                    <a  style="margin-right: 20px">APP版本号:</a>
+                    <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
+                           style="width: 100%;margin-right: 10px">
+                </div>
             </div>
             <div class="form-group">
                 <a for="pwd">金蝶/ERP版本信息:</a>
@@ -63,11 +74,6 @@
             <div class="form-group">
                 <a for="pwd">公司地址:</a>
                 <input type="text" class="form-control" id="address" placeholder="Enter telephone" name="address"
-                       value="">
-            </div>
-            <div class="form-group">
-                <a for="pwd">电话:</a>
-                <input type="text" class="form-control" id="phone" placeholder="Enter telephone" name="phone"
                        value="">
             </div>
             <div class="form-group">
@@ -82,8 +88,9 @@
             </div>
             <div class="form-group">
                 <a for="pwd">备注:</a>
-                <input type="text" class="form-control" id="remark" placeholder="Enter telephone" name="remark"
-                       value="">
+                <textarea class="form-control" rows="5" id="remark"  name="remark"></textarea>
+            <%--<textarea class="form-control" rows="5" id="remark"  name="remark" placeholder="Enter telephone"></textarea>--%>
+
             </div>
 
             <div class="form-check">

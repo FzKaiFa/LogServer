@@ -44,6 +44,11 @@
 %>
 <h5 ><%=tips%></h5>--%>
 
+<%
+    CompanyDao aa = new CompanyDao();
+//    List list = (List) request.getAttribute("pl_list");
+    List list = aa.getCompany();
+%>
 
 <div class="container" style="margin-top: 88px">
     <div  class="card">
@@ -51,6 +56,24 @@
             <button type="button" class="btn btn-outline-primary" value="新增项目信息" onclick="location.href='Company_create.jsp'">新增项目信息</button>
         </div>
         <div class="card-body">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    公司名称
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <%
+                        if (list==null){
+                    %><div class="alert alert-info"> 列表数据为空</div><%
+                        return;
+                    }
+                    for (int i = 0; i < list.size(); i++) {
+                        Company rs = (Company) list.get(i);
+                %>
+                    <a class="dropdown-item" href="#"><%=rs.getCompanyName()%></a>
+                    <%}%>
+                </div>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -63,9 +86,6 @@
                 </thead>
                 <tbody>
                 <%
-                    CompanyDao aa = new CompanyDao();
-//    List list = (List) request.getAttribute("pl_list");
-                    List list = aa.getCompany();
                     if (list==null){
                         %><div class="alert alert-info"> 列表数据为空</div><%
                         return;

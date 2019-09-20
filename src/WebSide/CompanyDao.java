@@ -4,6 +4,8 @@ import Bean.Company;
 import Bean.FeedBackBean;
 import Utils.JDBCUtil;
 import Utils.Lg;
+import Utils.MathUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -122,6 +124,50 @@ public class CompanyDao {
 		try {
 			conn = JDBCUtil.getSQLite4Company();
 			String SQL = "INSERT INTO Tb_Company (CompanyName, App_Version,Kd_Version,AppID,Phone,Address,Remark,EndTime_Server,Img_Logo,CanUse,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			sta = conn.prepareStatement(SQL);
+			sta.setString(1,company.CompanyName);
+			sta.setString(2,company.AppVersion);
+			sta.setString(3,company.KingdeeVersion);
+			sta.setString(4,company.AppID);
+			sta.setString(5,company.Phone);
+			sta.setString(6,company.Address);
+			sta.setString(7,company.Remark);
+			sta.setString(8,company.EndTime);
+			sta.setString(9,company.Img_Logo);
+			sta.setString(10,company.CanUse);
+			sta.setString(11,company.create_time);
+			int i = sta.executeUpdate();
+			if(i>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return false;
+	}
+	//修改公司信息
+	public boolean changeCompany(Company company){
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+company.getAppID()+"'";
+			sta = conn.prepareStatement(findSQL);
+			rs = sta.executeQuery();
+			String num="";
+			while (rs.next()) {
+				num = rs.getString("数量");
+			}
+			Lg.e("存在需要修改的公司信息"+num);
+			if (MathUtil.toD(num)<=0){
+				return false;
+			}
+			String SQL = "UPDATE Tb_Company set CompanyName=?, App_Version=?,Kd_Version=?,AppID=?,Phone=?,Address=?,Remark=?,EndTime_Server=?,Img_Logo=?,CanUse=?,create_time=? WHERE AppID='"+company.getAppID()+"'";
+			Lg.e("更新数据库语句"+SQL);
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,company.CompanyName);
 			sta.setString(2,company.AppVersion);
