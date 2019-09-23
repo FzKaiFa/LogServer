@@ -12,6 +12,7 @@
 <%@ page import="Bean.Company" %>
 <%@ page import="Utils.BaseData" %>
 <%@ page import="Utils.ExcelExport" %>
+<%@ page import="Utils.HttpRequestUtils" %>
 <%@ page import="org.apache.poi.hssf.usermodel.HSSFWorkbook" %>
 <html>
 <head>
@@ -25,7 +26,7 @@
 
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 <jsp:include page="../headLayout.jsp"/>
@@ -52,29 +53,46 @@
 
 <div class="container" style="margin-top: 88px">
     <div  class="card">
-        <div class="card-header">
-            <button type="button" class="btn btn-outline-primary" value="新增项目信息" onclick="location.href='Company_create.jsp'">新增项目信息</button>
-        </div>
-        <div class="card-body">
-            <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    公司名称
-                </a>
+        <%--<div class="dropdown">--%>
+            <select name="citySel" id="citySel" onchange="checkCp()" class="select">
+            <option value="">选择项目</option>
+                <%
+                    if (list==null){
+                %><div class="alert alert-info"> 列表数据为空</div><%
+                    return;
+                }
+                for (int i = 0; i < list.size(); i++) {
+                    Company rs = (Company) list.get(i);
+            %>
+                <option value="<%=rs.getRemark()%>"><%=rs.getCompanyName()%></option>
+                <%}%>
+            </select>
+            <%--<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                公司名称
+            </a>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <%
-                        if (list==null){
-                    %><div class="alert alert-info"> 列表数据为空</div><%
-                        return;
-                    }
-                    for (int i = 0; i < list.size(); i++) {
-                        Company rs = (Company) list.get(i);
-                %>
-                    <a class="dropdown-item" href="#"><%=rs.getCompanyName()%></a>
-                    <%}%>
-                </div>
-            </div>
-            <table class="table">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">菜单1</a>
+                <%
+                    if (list==null){
+                %><div class="alert alert-info"> 列表数据为空</div><%
+                    return;
+                }
+                for (int i = 0; i < list.size(); i++) {
+                    Company rs = (Company) list.get(i);
+            %>
+                <a class="dropdown-item" href="#"><%=rs.getCompanyName()%></a>
+                <%}%>
+            </div>--%>
+        <%--</div>--%>
+
+        <div class="card-body">
+            <a >备注:</a>
+                <%--<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"--%>
+                <%--value="<%=company.getRemark()%>">--%>
+            <textarea class="form-control" rows="15" id="remark"  name="remark"></textarea>
+
+            <%--<table class="table">
                 <thead>
                 <tr>
                     <th>公司名称</th>
@@ -100,40 +118,48 @@
                     <td><%=rs.getAppID() %></td>
                     <td><%=rs.getAddress() %></td>
                     <td><%=rs.getEndTime() %></td>
-                    <%--<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>--%>
+                    &lt;%&ndash;<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>&ndash;%&gt;
                         <td><a href="../company_find?json=<%=rs.getAppID()%>">管理</a></td>
                 </tr>
                 </tbody>
                 <%} %>
-            </table>
+            </table>--%>
         </div>
 
     </div>
 </div>
+<script type="text/javascript">
+function checkCp(){
+    var  Sel=document.getElementById("citySel");
+    var index=Sel.selectedIndex;
+    var val = Sel.options[index].value;
+    var txt = Sel.options[index].text;
+    document.getElementById('remark').innerText=val;
 
+//    document.getElementById('hh').innerHTML = '删除成功'+val
+//    var options=$("#my_level-name option:selected");
+//    var ea_id=options.val(); //拿到选中项的值
 
-<%--<table border="0" bgcolor="ccceee" width="750" style="height: 161px;">
-    <tr bgcolor="CCCCCC" align="center">
-        <td style="height: 30px;width:80px ">用户码</td>
-        <td style="height: 30px;width:180px ">手机IMIE码</td>
-        <td style="height: 30px;width:80px ">版本号</td>
-        <td style="height: 30px;width:80px ">操作</td>
+    HttpRequestUtils.sendGet("http://192.168.0.136:8084/Assist/company_find?json="+val);
 
-    </tr>
+<%--&lt;%&ndash;%>
+<%--boolean okDelete = companyDao.deleteCompany(company.getAppID());--%>
+<%--if (!okDelete){--%>
 
-    <tr align="center">
-        <td style="height: 45px; width:80px"><%=rs.getRegister_code() %>
-        </td>
-        <td style="height: 45px; width:180px"><%=rs.getVal1() %>
-        </td>
-        <td style="height: 45px; width:80px"><%=rs.getVal2() %>
-        </td>
-        &lt;%&ndash;<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>&ndash;%&gt;
-        <td width="80px" align="center"><a href="RegisterDelete?json=<%=rs.getRegister_code() %>">删除</a></td>
-    </tr>
-    <%} %>
+<%--%>--%>
+<%--//        alert("删除成功");--%>
+<%--window.self.location = "MGM/CompanyList.jsp";--%>
+<%--//        document.getElementById("tips").value = "删除成功"--%>
+<%--&lt;%&ndash;%>
+<%--}else{--%>
+<%--%>--%>
 
-</table>--%>
+<%--window.self.location = "MGM/CompanyList.jsp";--%>
+<%--alert("删除失败");&lt;%&ndash;%>
+<%--}--%>
+<%--%>--%>
+}
+</script>
 </body>
 
 

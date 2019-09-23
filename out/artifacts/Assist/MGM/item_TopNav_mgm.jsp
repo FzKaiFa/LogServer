@@ -46,7 +46,7 @@
 
         <a class="box" href="../registerMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">注册表</a><br><br>
 
-        <a class="box" href="../CompanyLog.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">修改日志</a><br><br>
+        <a class="box" href="CompanyLog.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">修改日志</a><br><br>
 
         <a class="box" href="../testMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">查询信息</a><br><br>
 
