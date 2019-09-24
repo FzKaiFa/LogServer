@@ -46,9 +46,10 @@
 <h5 ><%=tips%></h5>--%>
 
 <%
-    CompanyDao aa = new CompanyDao();
+    String baseUrl = BaseData.baseUrl;
+    CompanyDao companyDao = new CompanyDao();
 //    List list = (List) request.getAttribute("pl_list");
-    List list = aa.getCompany();
+    List list = companyDao.getCompany();
 %>
 
 <div class="container" style="margin-top: 88px">
@@ -63,34 +64,16 @@
                 }
                 for (int i = 0; i < list.size(); i++) {
                     Company rs = (Company) list.get(i);
-            %>
-                <option value="<%=rs.getRemark()%>"><%=rs.getCompanyName()%></option>
+                %>
+                <option value="<%=rs.getAppID()%>"><%=rs.getCompanyName()%></option>
                 <%}%>
             </select>
-            <%--<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                公司名称
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">菜单1</a>
-                <%
-                    if (list==null){
-                %><div class="alert alert-info"> 列表数据为空</div><%
-                    return;
-                }
-                for (int i = 0; i < list.size(); i++) {
-                    Company rs = (Company) list.get(i);
-            %>
-                <a class="dropdown-item" href="#"><%=rs.getCompanyName()%></a>
-                <%}%>
-            </div>--%>
-        <%--</div>--%>
 
         <div class="card-body">
             <a >备注:</a>
                 <%--<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"--%>
                 <%--value="<%=company.getRemark()%>">--%>
-            <textarea class="form-control" rows="15" id="remark"  name="remark"></textarea>
+            <textarea class="form-control" rows="15" id="remark2"  name="remark"></textarea>
 
             <%--<table class="table">
                 <thead>
@@ -125,22 +108,45 @@
                 <%} %>
             </table>--%>
         </div>
+            <button type="submit" class="btn btn-primary" onclick="submitForm1()">确定修改</button>
 
     </div>
+    <!-- 在form中设置隐藏控件，用来存储JS中的值 -->
+    <%--<form name="frmApp" action="./CompanyChangeLog" id="frmAppId" mothed="post"/>--%>
+    <input id="app_id" type="hidden" name="test" value="">
+    <input id="remark" type="hidden" name="test" value="">
+    <%--</form>--%>
 </div>
 <script type="text/javascript">
+    function submitForm1(){
+        var  Sel=document.getElementById("citySel");
+        var index=Sel.selectedIndex;
+        var val = Sel.options[index].value;
+        var textRemark = document.getElementById('remark2');
+        var ssss = textRemark.innerHTML;
+//        HttpRequestUtils.sendGet("http://192.168.0.136:8084/Assist/CompanyChangeLog?app_id="+val+"&remark="+textRemark);
+        <%--var url =<%=baseUrl%>+"CompanyChangeLog?";--%>
+//        window.location.href=url+"app_id="+val+"&remark="+textRemark;
+        window.location.href="http://192.168.0.136:8084/Assist/CompanyChangeLog?app_id="+val+"&remark="+ssss;
+    }
 function checkCp(){
     var  Sel=document.getElementById("citySel");
     var index=Sel.selectedIndex;
     var val = Sel.options[index].value;
     var txt = Sel.options[index].text;
-    document.getElementById('remark').innerText=val;
+
+//    var frm = document.getElementById("frmAppId"); // 获取表单
+//    frm.submit(); // 对表单进行提交
+
+    document.getElementById("app_id").value=val;
+
+    document.getElementById('remark2').innerText=txt;
 
 //    document.getElementById('hh').innerHTML = '删除成功'+val
 //    var options=$("#my_level-name option:selected");
 //    var ea_id=options.val(); //拿到选中项的值
 
-    HttpRequestUtils.sendGet("http://192.168.0.136:8084/Assist/company_find?json="+val);
+//    HttpRequestUtils.sendGet("http://192.168.0.136:8084/Assist/company_find?json="+val);
 
 <%--&lt;%&ndash;%>
 <%--boolean okDelete = companyDao.deleteCompany(company.getAppID());--%>

@@ -195,6 +195,42 @@ public class CompanyDao {
 		}
 		return false;
 	}
+	//修改公司的Log
+	public boolean changeCompanyLog(Company company){
+		Lg.e("修改的公司",company);
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+company.getAppID()+"'";
+			sta = conn.prepareStatement(findSQL);
+			rs = sta.executeQuery();
+			String num="";
+			while (rs.next()) {
+				num = rs.getString("数量");
+			}
+			Lg.e("存在需要修改的公司信息"+num);
+			if (MathUtil.toD(num)<=0){
+				return false;
+			}
+			String SQL = "UPDATE Tb_Company set Remark=? WHERE AppID='"+company.getAppID()+"'";
+			Lg.e("更新数据库语句"+SQL);
+			sta = conn.prepareStatement(SQL);
+			sta.setString(1,company.Remark);
+			int i = sta.executeUpdate();
+			if(i>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return false;
+	}
+
 
 	public boolean deleteCompany(String appid){
 		try {
