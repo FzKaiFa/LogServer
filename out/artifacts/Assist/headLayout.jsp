@@ -26,7 +26,7 @@
 <div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <%--<a class="navbar-brand col-xl-7" href="#" style="margin-left: 6.25rem;">方左科技</a>--%>
-        <a class="navbar-brand" href="#" style="margin-left: 6.25rem;">方左科技</a>
+        <a class="navbar-brand" href="#" style="margin-left: 6.25rem;">方左科技数据中心</a>
         <%--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>

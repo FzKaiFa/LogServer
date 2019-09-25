@@ -44,7 +44,7 @@ public class ExcelExport {
          row.createCell(0).setCellValue(data.getCompanyName());
          row.createCell(1).setCellValue(data.getAppID());
          row.createCell(2).setCellValue(data.getAppVersion());
-         row.createCell(3).setCellValue(data.getCreateTime());
+         row.createCell(3).setCellValue(data.getRemark());
       }
 
       return wb;

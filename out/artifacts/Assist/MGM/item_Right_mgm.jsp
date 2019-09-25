@@ -25,7 +25,7 @@
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link type="text/javascript" src="js/swiper.min.js">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 <jsp:include page="../headLayout.jsp"/>
@@ -36,7 +36,7 @@
 
 %>
 
-<input type="button" class="btn btn-outline-primary"  value="刷新" onclick="window.location.reload();"/>
+<%--<input type="button" class="btn btn-outline-primary"  value="刷新" onclick="window.location.reload();"/>--%>
 <div class="container" style="margin-top:30px">
     <div class="row">
 

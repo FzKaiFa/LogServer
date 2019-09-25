@@ -40,13 +40,13 @@
 <body class="mgm_bg">
     <%--<img src="../img/logo.gif" alt="" onclick="location.href='Mgm_Right CompanyList.jsp'">--%>
     <div style="height: 80%">
-        <a href = 'item_Right_mgm.jsp' target = 'Mgm_Right'><img src="../img/logo.gif" alt=""></a>
+        <a href = 'item_Right_mgm.jsp' target = 'Mgm_Right'><img src="../img/logo.gif" alt="" style="height: 52px"></a>
 
         <a class="box" href="CompanyList.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="" >项目管理</a><br><br>
 
         <a class="box" href="../registerMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">注册表</a><br><br>
 
-        <a class="box" href="CompanyLog.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">修改日志</a><br><br>
+        <%--<a class="box" href="CompanyLog.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">修改日志</a><br><br>--%>
 
         <a class="box" href="../testMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">查询信息</a><br><br>
 
