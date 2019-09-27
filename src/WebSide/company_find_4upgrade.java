@@ -1,11 +1,8 @@
-package WebSide.ApkApi;
+package WebSide;
 
 import Bean.Company;
 import Bean.UpgradeBean;
-import Utils.CommonJson;
 import Utils.Lg;
-import WebSide.CompanyDao;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +13,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 获取版本信息
+ * Servlet implementation class pl_find
  */
-@WebServlet(urlPatterns = "/getApkVersion")
-public class getApkVersion extends HttpServlet {
+@WebServlet(urlPatterns = "/company_find_4upgrade")
+public class company_find_4upgrade extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,17 +35,26 @@ public class getApkVersion extends HttpServlet {
 		  request.setCharacterEncoding("UTF-8");
 		  response.setCharacterEncoding("UTF-8");
 		try {
-
-			String appid=request.getParameter("json");
+	           String appid=request.getParameter("json");
 			Lg.e("得到公司id",appid);
-			CompanyDao run=new CompanyDao();
+			UpgradeDao run=new UpgradeDao();
+			CompanyDao companyDao=new CompanyDao();
 //	          	stu.setHid(hid);
-	           List<Company> list2 = run.findCompany(appid);
+	           List<UpgradeBean> list2 = run.findUpgradeBean(appid);
+	           List<Company> companys = companyDao.findCompany(appid);
 	           if (list2.size()>0){
-				   UpgradeBean bean = new UpgradeBean(list2.get(0));
-				   response.getWriter().write(CommonJson.getCommonJson(true,new Gson().toJson(bean)));
+	           	Lg.e("得到更新版本信息",list2.get(0));
+				   request.setAttribute("upgrade", list2.get(0));
+				   request.getRequestDispatcher("MGM/Company_set_upgrade.jsp").forward(request, response);
 			   }else{
-				   response.getWriter().write(CommonJson.getCommonJson(false,""));
+				   UpgradeBean bean = new UpgradeBean();
+				   bean.CompanyName =companys.get(0).CompanyName;
+				   bean.AppVersion =companys.get(0).AppVersion;
+				   bean.AppID =appid;
+				   bean.UpgradeLog ="升级提示";
+				   bean.UpgradeUrl ="http://148.70.108.65:8080/AppFile/GZWS/app-debug.apk";
+				   request.setAttribute("upgrade", bean);
+				   request.getRequestDispatcher("MGM/Company_set_upgrade.jsp").forward(request, response);
 			   }
 
 		} catch (Exception e) {

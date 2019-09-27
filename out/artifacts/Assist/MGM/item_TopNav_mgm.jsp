@@ -44,6 +44,8 @@
 
         <a class="box" href="CompanyList.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="" >项目管理</a><br><br>
 
+        <a class="box" href="UpgradeList.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">版本管理</a><br><br>
+
         <a class="box" href="../registerMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">注册表</a><br><br>
 
         <%--<a class="box" href="CompanyLog.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">修改日志</a><br><br>--%>
