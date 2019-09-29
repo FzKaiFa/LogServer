@@ -182,6 +182,8 @@ public class CompanyDao {
 			sta.setString(11,company.create_time);
 			int i = sta.executeUpdate();
 			if(i>0){
+					//更新公司信息表的app版本号
+				changeUpgradeVersion(company);
 				return true;
 			}else{
 				return false;
@@ -195,6 +197,44 @@ public class CompanyDao {
 		}
 		return false;
 	}
+
+	//更新公司信息时，如果版本信息表存在该公司的app版本信息，则更新
+	public void changeUpgradeVersion(Company company){
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String findSQL ="select COUNT(*) as 数量 from Tb_UpgradeBean where AppID='"+company.getAppID()+"'";
+			sta = conn.prepareStatement(findSQL);
+			rs = sta.executeQuery();
+			String num="";
+			while (rs.next()) {
+				num = rs.getString("数量");
+			}
+			Lg.e("需要修改的版本信息："+num);
+			if (MathUtil.toD(num)>0){
+				String SQL = "UPDATE Tb_UpgradeBean set App_Version=?" +
+						" WHERE AppID='"+company.getAppID()+"'";
+				Lg.e("更新数据库语句"+SQL);
+				sta = conn.prepareStatement(SQL);
+				sta.setString(1,company.AppVersion);
+				int i = sta.executeUpdate();
+//				if(i>0){
+//					//更新公司信息表的app版本号
+//					changeCompanyVersion(company.AppID,company.AppVersion);
+//					return true;
+//				}else{
+//					return false;
+//				}
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+	}
+
 	//修改公司的Log
 	public boolean changeCompanyLog(Company company){
 		Lg.e("修改的公司",company);

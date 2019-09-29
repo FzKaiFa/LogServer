@@ -1,7 +1,6 @@
 package WebSide;
 
 import Bean.Company;
-import Bean.FeedBackBean;
 import Bean.UpgradeBean;
 import Utils.JDBCUtil;
 import Utils.Lg;
@@ -160,6 +159,8 @@ public class UpgradeDao {
 				sta.setString(6,company.UpgradeLog);
 				int i = sta.executeUpdate();
 				if(i>0){
+					//更新公司信息表的app版本号
+					changeCompanyVersion(company.AppID,company.AppVersion);
 					return true;
 				}else{
 					return false;
@@ -177,6 +178,8 @@ public class UpgradeDao {
 				sta.setString(6,company.UpgradeLog);
 				int i = sta.executeUpdate();
 				if(i>0){
+					//更新公司信息表的app版本号
+					changeCompanyVersion(company.AppID,company.AppVersion);
 					return true;
 				}else{
 					return false;
@@ -191,6 +194,34 @@ public class UpgradeDao {
 			JDBCUtil.close(rs,sta,conn);
 		}
 		return false;
+	}
+	//更新版本信息表时，同时更新公司信息表的app版本号
+	private void changeCompanyVersion(String appid,String version){
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+appid+"'";
+			sta = conn.prepareStatement(findSQL);
+			rs = sta.executeQuery();
+			String num="";
+			while (rs.next()) {
+				num = rs.getString("数量");
+			}
+			Lg.e("存在需要修改的公司信息"+num);
+			if (MathUtil.toD(num)<=0){
+				return;
+			}
+			String SQL = "UPDATE Tb_Company set App_Version=? WHERE AppID='"+appid+"'";
+			Lg.e("更新数据库语句"+SQL);
+			sta = conn.prepareStatement(SQL);
+			sta.setString(1,version);
+			int i = sta.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
 	}
 	//修改公司的Log
 	public boolean changeCompanyLog(Company company){
@@ -246,48 +277,6 @@ public class UpgradeDao {
 			JDBCUtil.close(rs,sta,conn);
 		}
 		return false;
-	}
-
-	public List<FeedBackBean> getFeedBack(){
-		List<FeedBackBean> list = new ArrayList<>();
-		try {
-			conn = JDBCUtil.getSQLiteForFeedBack();
-			String SQL = "SELECT * FROM FeedBackOfWeb ORDER BY id DESC ";
-			sta = conn.prepareStatement(SQL);
-			rs = sta.executeQuery();
-			while (rs.next()) {
-				FeedBackBean bean = new FeedBackBean();
-				bean.id = rs.getString("id");
-				bean.name = rs.getString("name");
-				bean.phone = rs.getString("phone");
-				list.add(bean);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCUtil.close(rs,sta,conn);
-		}
-		return list;
-	}
-	public void deleteFeedBack(String id){
-		try {
-			conn = JDBCUtil.getSQLiteForFeedBack();
-			String SQL = "DELETE id="+id+" FROM FeedBackOfWeb";
-			sta = conn.prepareStatement(SQL);
-			boolean b = sta.execute();
-			Lg.e("删除",b);
-			if (!b){
-//                response.sendRedirect("error.jsp");
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCUtil.close(rs,sta,conn);
-		}
 	}
 
 	//统一获取表数据
