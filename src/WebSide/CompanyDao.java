@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//处理公司信息表逻辑
 public class CompanyDao {
 
 	protected static final String FIELDS_INSERT = "rid,name,password,sex,age,clue,vip";
@@ -151,7 +152,7 @@ public class CompanyDao {
 		}
 		return false;
 	}
-	//修改公司信息
+	//修改公司信息(先查出是否包含appid所属的公司，再通过各个字段名更新数据)
 	public boolean changeCompany(Company company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
@@ -182,7 +183,7 @@ public class CompanyDao {
 			sta.setString(11,company.create_time);
 			int i = sta.executeUpdate();
 			if(i>0){
-					//更新公司信息表的app版本号
+				//更新版本信息表的app版本号
 				changeUpgradeVersion(company);
 				return true;
 			}else{

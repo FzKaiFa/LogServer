@@ -40,7 +40,7 @@
 <body class="mgm_bg">
     <%--<img src="../img/logo.gif" alt="" onclick="location.href='Mgm_Right CompanyList.jsp'">--%>
     <div style="height: 80%">
-        <a href = 'item_Right_mgm.jsp' target = 'Mgm_Right'><img src="../img/logo.gif" alt="" style="height: 52px"></a>
+        <a href = 'item_Right_mgm.jsp' target = 'Mgm_Right'><img src="../img/gxlog.jpg" alt="" style="height: 55px"></a>
 
         <a class="box" href="CompanyList.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="" >项目管理</a><br><br>
 

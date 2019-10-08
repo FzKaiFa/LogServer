@@ -41,6 +41,12 @@
 <h5 ><%=tips%></h5>--%>
 
 
+<div>
+    <br/>
+    <h2 style="width: 200px;text-align:center">注册表管理-></h2>
+</div>
+<hr/>
+
 <div class="container">
     <div  class="card">
         <div class="card-body">
