@@ -38,7 +38,11 @@
     Company company = (Company) request.getAttribute("company");
 %>
 <jsp:include page="../headLayout.jsp"/>
-
+<div>
+    <br/>
+    <h2 style="margin-left: 24px">LOG日志修改-></h2>
+</div>
+<hr/>
 <div class="" style="margin: 10px">
     <div  class="card">
         <div class="card-header">

@@ -2,6 +2,7 @@ package WebSide;
 
 import Bean.Company;
 import Bean.UpgradeBean;
+import Utils.CommonUtil;
 import Utils.JDBCUtil;
 import Utils.Lg;
 import Utils.MathUtil;
@@ -43,11 +44,11 @@ public class UpgradeDao {
 				bean.CompanyName = rs.getString("CompanyName");
 				bean.AppVersion = rs.getString("App_Version");
 				bean.AppID = rs.getString("AppID");
-				bean.CanUse = rs.getString("CanUse");
 				bean.EndTime = rs.getString("EndTime_server");
 				bean.UpgradeLog = rs.getString("UpgradeLog");
 				bean.UpgradeTime = rs.getString("UpgradeTime");
 				bean.UpgradeUrl = rs.getString("UpgradeUrl");
+				bean.CanUse = rs.getString("CanUse");
 				list.add(bean);
 			}
 			Lg.e("得到公司列表",list);
@@ -60,7 +61,7 @@ public class UpgradeDao {
 		}
 		return list;
 	}
-	//获取公司项目数量
+	//获取版本信息表数量
 	public String getUpgradeNum(){
 		String num="";
 		try {
@@ -135,7 +136,7 @@ public class UpgradeDao {
 		}
 		return false;
 	}
-	//修改公司信息
+	//修改版本信息
 	public boolean changeUpgrade(UpgradeBean company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
@@ -147,6 +148,7 @@ public class UpgradeDao {
 				num = rs.getString("数量");
 			}
 			Lg.e("需要修改的版本信息："+num);
+			//若本地无该公司的版本信息，则新增
 			if (MathUtil.toD(num)<=0){
 				String SQL = "INSERT INTO Tb_UpgradeBean (CompanyName, App_Version,AppID," +
 						"UpgradeUrl,UpgradeTime,UpgradeLog) VALUES (?,?,?,?,?,?)";
@@ -160,7 +162,9 @@ public class UpgradeDao {
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
-					changeCompanyVersion(company.AppID,company.AppVersion);
+					changeCompanyVersion(company);
+					//更新公司信息表的log日志
+					changeCompanyLog(company.AppID,company.UpgradeLog);
 					return true;
 				}else{
 					return false;
@@ -179,7 +183,9 @@ public class UpgradeDao {
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
-					changeCompanyVersion(company.AppID,company.AppVersion);
+					changeCompanyVersion(company);
+					//更新公司信息表的log日志
+					changeCompanyLog(company.AppID,company.UpgradeLog);
 					return true;
 				}else{
 					return false;
@@ -191,15 +197,15 @@ public class UpgradeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			JDBCUtil.close(rs,sta,conn);
+//			JDBCUtil.close(rs,sta,conn);
 		}
 		return false;
 	}
 	//更新版本信息表时，同时更新公司信息表的app版本号
-	private void changeCompanyVersion(String appid,String version){
+	private void changeCompanyVersion(UpgradeBean company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
-			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+appid+"'";
+			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+company.AppID+"'";
 			sta = conn.prepareStatement(findSQL);
 			rs = sta.executeQuery();
 			String num="";
@@ -210,10 +216,42 @@ public class UpgradeDao {
 			if (MathUtil.toD(num)<=0){
 				return;
 			}
-			String SQL = "UPDATE Tb_Company set App_Version=? WHERE AppID='"+appid+"'";
+			String SQL = "UPDATE Tb_Company set App_Version=? WHERE AppID='"+company.AppID+"'";
 			Lg.e("更新数据库语句"+SQL);
 			sta = conn.prepareStatement(SQL);
-			sta.setString(1,version);
+			sta.setString(1,company.AppVersion);
+			int i = sta.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+//			JDBCUtil.close(rs,sta,conn);
+		}
+	}
+	//更新版本信息表时，同时更新公司信息表的Log日志信息
+	private void changeCompanyLog(String appid,String log){
+		try {
+			conn = JDBCUtil.getSQLite4Company();
+			String findSQL ="select COUNT(*) as 数量,Remark from Tb_Company where AppID='"+appid+"'";
+			sta = conn.prepareStatement(findSQL);
+			rs = sta.executeQuery();
+			String num="";
+			String remark="";
+			while (rs.next()) {
+				num = rs.getString("数量");
+				remark=rs.getString("Remark");
+			}
+			Lg.e("存在需要修改的公司信息"+num+"-"+remark);
+			if (MathUtil.toD(num)<=0){
+				return;
+			}
+			StringBuilder builder = new StringBuilder();
+			builder.append(CommonUtil.getTimeLong(true)).append("\n").append(log).append("\n").append("\n").append(remark);
+			String SQL = "UPDATE Tb_Company set Remark=? WHERE AppID='"+appid+"'";
+			Lg.e("更新数据库语句"+SQL);
+			sta = conn.prepareStatement(SQL);
+			sta.setString(1,builder.toString());
 			int i = sta.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

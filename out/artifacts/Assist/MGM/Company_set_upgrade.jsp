@@ -39,7 +39,11 @@
     UpgradeBean company = (UpgradeBean) request.getAttribute("upgrade");
 %>
 <jsp:include page="../headLayout.jsp"/>
-
+<div>
+    <br/>
+    <h2 style="margin-left: 24px">版本信息修改-></h2>
+</div>
+<hr/>
 <div class="container" style="margin-top: 88px">
     <div  class="card">
         <div class="card-header">
@@ -52,36 +56,34 @@
             <div class="form-inline" style="margin-bottom: 10px">
                 <div class="form-group" style="width: 50%">
                     <a style="margin-right: 20px">公司名称:</a>
+                    <input type="hidden" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
+                           value="<%=company.getAppID()%>" style="width: 100%;margin-right: 10px">
                     <input type="text" class="form-control" id="company_name" placeholder="Enter your name" name="company_name"
                            value="<%=company.getCompanyName()%>" style="width: 100%;margin-right: 10px">
                 </div>
             </div>
             <div class="form-inline" style="margin-bottom: 10px">
                 <div class="form-group" style="width: 50%">
-                    <a style="margin-right: 20px">APPID:</a>
-                    <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
-                           value="<%=company.getAppID()%>" style="width: 100%;margin-right: 10px">
-                </div>
-                <div class="form-group" style="width: 50%">
                     <a  style="margin-right: 20px">APP版本号:</a>
                     <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
                            value="<%=company.getAppVersion()%>" style="width: 100%;margin-right: 10px">
                 </div>
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">更新日期:</a>
+                    <input type="text" class="form-control" id="upgrade_time" placeholder="Enter telephone" name="upgrade_time"
+                           value="<%=company.getUpgradeTime()%>" style="width: 100%;margin-right: 10px">
+                </div>
             </div>
             <div class="form-group">
-                <a >更细地址:</a>
+                <a >更新地址:</a>
                 <input type="text" class="form-control" id="upgrade_url" placeholder="Enter telephone" name="upgrade_url"
                        value="<%=company.getUpgradeUrl()%>">
             </div>
             <div class="form-group">
                 <a >更新提示:</a>
-                <input type="text" class="form-control" id="upgrade_log" placeholder="Enter telephone" name="upgrade_log"
-                       value="<%=company.getUpgradeLog()%>">
-            </div>
-            <div class="form-group">
-                <a >更新日期:</a>
-                <input type="text" class="form-control" id="upgrade_time" placeholder="Enter telephone" name="upgrade_time"
-                       value="<%=company.getUpgradeTime()%>">
+                <textarea class="form-control" rows="10"  id="upgrade_log"  name="upgrade_log"><%=company.getUpgradeLog()%></textarea>
+                <%--<input type="text" class="form-control" rows="10" id="upgrade_log" placeholder="Enter telephone" name="upgrade_log"--%>
+                       <%--value="<%=company.getUpgradeLog()%>">--%>
             </div>
             <%--<a href="company_delete?json=<%=company.getAppID()%>">删除</a>--%>
 

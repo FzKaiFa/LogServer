@@ -1,10 +1,9 @@
 package WebSide.ApkApi;
 
-import Bean.Company;
 import Bean.UpgradeBean;
 import Utils.CommonJson;
 import Utils.Lg;
-import WebSide.CompanyDao;
+import WebSide.UpgradeDao;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -41,12 +40,11 @@ public class getApkVersion extends HttpServlet {
 
 			String appid=request.getParameter("json");
 			Lg.e("得到公司id",appid);
-			CompanyDao run=new CompanyDao();
+			UpgradeDao run=new UpgradeDao();
 //	          	stu.setHid(hid);
-	           List<Company> list2 = run.findCompany(appid);
+	           List<UpgradeBean> list2 = run.findUpgradeBean(appid);
 	           if (list2.size()>0){
-				   UpgradeBean bean = new UpgradeBean(list2.get(0));
-				   response.getWriter().write(CommonJson.getCommonJson(true,new Gson().toJson(bean)));
+				   response.getWriter().write(CommonJson.getCommonJson(true,new Gson().toJson(list2.get(0))));
 			   }else{
 				   response.getWriter().write(CommonJson.getCommonJson(false,""));
 			   }

@@ -38,7 +38,11 @@
     Company company = (Company) request.getAttribute("company");
 %>
 <jsp:include page="../headLayout.jsp"/>
-
+<div>
+    <br/>
+    <h2 style="width: 200px;text-align:center">项目修改-></h2>
+</div>
+<hr/>
 <div class="container" style="margin-top: 88px">
     <div  class="card">
         <div class="card-header">
@@ -62,7 +66,7 @@
             </div>
             <div class="form-inline" style="margin-bottom: 10px">
                 <div class="form-group" style="width: 50%">
-                    <a style="margin-right: 20px">APPID:</a>
+                    <a style="margin-right: 20px">APPID:(不可修改)</a>
                     <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
                            value="<%=company.getAppID()%>" style="width: 100%;margin-right: 10px">
                 </div>
