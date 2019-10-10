@@ -62,23 +62,34 @@
                            value="<%=company.getCompanyName()%>" style="width: 100%;margin-right: 10px">
                 </div>
             </div>
-            <div class="form-inline" style="margin-bottom: 10px">
-                <div class="form-group" style="width: 50%">
-                    <a  style="margin-right: 20px">APP版本号:</a>
-                    <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
-                           value="<%=company.getAppVersion()%>" style="width: 100%;margin-right: 10px">
-                </div>
-                <div class="form-group" style="width: 50%">
-                    <a style="margin-right: 20px">更新日期:</a>
-                    <input type="text" class="form-control" id="upgrade_time" placeholder="Enter telephone" name="upgrade_time"
-                           value="<%=company.getUpgradeTime()%>" style="width: 100%;margin-right: 10px">
-                </div>
-            </div>
             <div class="form-group">
                 <a >更新地址:</a>
                 <input type="text" class="form-control" id="upgrade_url" placeholder="Enter telephone" name="upgrade_url"
                        value="<%=company.getUpgradeUrl()%>">
             </div>
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 25%">
+                    <a  style="margin-right: 20px">APP版本号:</a>
+                    <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
+                           value="<%=company.getAppVersion()%>" style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 25%">
+                    <a  style="margin-right: 20px">APP版本号2:</a>
+                    <input type="text" class="form-control" id="app_version2" placeholder="Enter telephone" name="app_version2"
+                           value="<%=company.getAppVersion2()%>" style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 25%">
+                    <a  style="margin-right: 20px">APP版本号2:</a>
+                    <input type="text" class="form-control" id="app_version3" placeholder="Enter telephone" name="app_version3"
+                           value="<%=company.getAppVersion3()%>" style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 25%">
+                    <a style="margin-right: 20px">更新日期:</a>
+                    <input type="text" class="form-control" id="upgrade_time" placeholder="Enter telephone" name="upgrade_time"
+                           value="<%=company.getUpgradeTime()%>" style="width: 100%;margin-right: 10px">
+                </div>
+            </div>
+
             <div class="form-group">
                 <a >更新提示:</a>
                 <textarea class="form-control" rows="10"  id="upgrade_log"  name="upgrade_log"><%=company.getUpgradeLog()%></textarea>

@@ -39,20 +39,7 @@ public class CompanyDao {
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
-				Company bean = new Company();
-				bean.id = rs.getInt("cid");
-				bean.CompanyName = rs.getString("CompanyName");
-				bean.AppVersion = rs.getString("App_Version");
-				bean.KingdeeVersion = rs.getString("Kd_Version");
-				bean.AppID = rs.getString("AppID");
-				bean.Remark = rs.getString("Remark");
-				bean.Img_Logo = rs.getString("Img_Logo");
-				bean.CanUse = rs.getString("CanUse");
-				bean.EndTime = rs.getString("EndTime_server");
-				bean.Phone = rs.getString("Phone");
-				bean.Address = rs.getString("Address");
-				bean.create_time = rs.getString("create_time");
-				list.add(bean);
+				list.add(backBean(rs));
 			}
 			Lg.e("得到公司列表",list);
 		} catch (ClassNotFoundException e) {
@@ -94,20 +81,7 @@ public class CompanyDao {
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
-				Company bean = new Company();
-				bean.id = rs.getInt("cid");
-				bean.CompanyName = rs.getString("CompanyName");
-				bean.AppVersion = rs.getString("App_Version");
-				bean.KingdeeVersion = rs.getString("Kd_Version");
-				bean.AppID = rs.getString("AppID");
-				bean.Remark = rs.getString("Remark");
-				bean.Img_Logo = rs.getString("Img_Logo");
-				bean.CanUse = rs.getString("CanUse");
-				bean.EndTime = rs.getString("EndTime_server");
-				bean.Phone = rs.getString("Phone");
-				bean.Address = rs.getString("Address");
-				bean.create_time = rs.getString("create_time");
-				list.add(bean);
+				list.add(backBean(rs));
 			}
 			Lg.e("通过appid找到公司列表",list);
 		} catch (ClassNotFoundException e) {
@@ -124,7 +98,7 @@ public class CompanyDao {
 	public boolean addCompany(Company company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
-			String SQL = "INSERT INTO Tb_Company (CompanyName, App_Version,Kd_Version,AppID,Phone,Address,Remark,EndTime_Server,Img_Logo,CanUse,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			String SQL = "INSERT INTO Tb_Company (CompanyName, App_Version,Kd_Version,AppID,Phone,Address,Remark,EndTime_Server,Img_Logo,CanUse,create_time, App_Version2, App_Version3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,company.CompanyName);
 			sta.setString(2,company.AppVersion);
@@ -137,6 +111,8 @@ public class CompanyDao {
 			sta.setString(9,company.Img_Logo);
 			sta.setString(10,company.CanUse);
 			sta.setString(11,company.create_time);
+			sta.setString(12,company.AppVersion2);
+			sta.setString(13,company.AppVersion3);
 			int i = sta.executeUpdate();
 			if(i>0){
 				return true;
@@ -167,7 +143,7 @@ public class CompanyDao {
 			if (MathUtil.toD(num)<=0){
 				return false;
 			}
-			String SQL = "UPDATE Tb_Company set CompanyName=?, App_Version=?,Kd_Version=?,AppID=?,Phone=?,Address=?,Remark=?,EndTime_Server=?,Img_Logo=?,CanUse=?,create_time=? WHERE AppID='"+company.getAppID()+"'";
+			String SQL = "UPDATE Tb_Company set CompanyName=?, App_Version=?,Kd_Version=?,AppID=?,Phone=?,Address=?,Remark=?,EndTime_Server=?,Img_Logo=?,CanUse=?,create_time=?, App_Version2=?, App_Version3=?  WHERE AppID='"+company.getAppID()+"'";
 			Lg.e("更新数据库语句"+SQL);
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,company.CompanyName);
@@ -181,20 +157,25 @@ public class CompanyDao {
 			sta.setString(9,company.Img_Logo);
 			sta.setString(10,company.CanUse);
 			sta.setString(11,company.create_time);
+			sta.setString(12,company.AppVersion2);
+			sta.setString(13,company.AppVersion3);
 			int i = sta.executeUpdate();
 			if(i>0){
 				//更新版本信息表的app版本号
 				changeUpgradeVersion(company);
 				return true;
 			}else{
+				JDBCUtil.close(rs,sta,conn);
 				return false;
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			JDBCUtil.close(rs,sta,conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
 			JDBCUtil.close(rs,sta,conn);
+		}finally {
+//			JDBCUtil.close(rs,sta,conn);
 		}
 		return false;
 	}
@@ -212,11 +193,13 @@ public class CompanyDao {
 			}
 			Lg.e("需要修改的版本信息："+num);
 			if (MathUtil.toD(num)>0){
-				String SQL = "UPDATE Tb_UpgradeBean set App_Version=?" +
+				String SQL = "UPDATE Tb_UpgradeBean set App_Version=?,App_Version2=?,App_Version3=?" +
 						" WHERE AppID='"+company.getAppID()+"'";
 				Lg.e("更新数据库语句"+SQL);
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.AppVersion);
+				sta.setString(2,company.AppVersion2);
+				sta.setString(3,company.AppVersion3);
 				int i = sta.executeUpdate();
 //				if(i>0){
 //					//更新公司信息表的app版本号
@@ -273,6 +256,7 @@ public class CompanyDao {
 	}
 
 
+	//删除公司项目相关数据
 	public boolean deleteCompany(String appid){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
@@ -280,6 +264,14 @@ public class CompanyDao {
 			Lg.e("删除项目："+SQL);
 			sta = conn.prepareStatement(SQL);
 			boolean b = sta.execute();
+			if (!b){
+				//同时删掉版本信息表的数据
+				String SQL2 = "DELETE FROM Tb_UpgradeBean WHERE AppID = '"+appid+"'";
+				Lg.e("删除项目2："+SQL2);
+				sta = conn.prepareStatement(SQL2);
+				boolean b2 = sta.execute();
+				Lg.e("删除版本信息",b2);
+			}
 			Lg.e("删除",b);
 			return b;
 		} catch (ClassNotFoundException e) {
@@ -332,6 +324,26 @@ public class CompanyDao {
 		}finally {
 			JDBCUtil.close(rs,sta,conn);
 		}
+	}
+
+	//统一获取表数据
+	private Company backBean(ResultSet rs) throws SQLException{
+		Company bean = new Company();
+		bean.id = rs.getInt("cid");
+		bean.CompanyName = rs.getString("CompanyName");
+		bean.AppVersion = rs.getString("App_Version");
+		bean.AppVersion2 = rs.getString("App_Version2");
+		bean.AppVersion3 = rs.getString("App_Version3");
+		bean.KingdeeVersion = rs.getString("Kd_Version");
+		bean.AppID = rs.getString("AppID");
+		bean.Remark = rs.getString("Remark");
+		bean.Img_Logo = rs.getString("Img_Logo");
+		bean.CanUse = rs.getString("CanUse");
+		bean.EndTime = rs.getString("EndTime_server");
+		bean.Phone = rs.getString("Phone");
+		bean.Address = rs.getString("Address");
+		bean.create_time = rs.getString("create_time");
+		return bean;
 	}
 
 	/*

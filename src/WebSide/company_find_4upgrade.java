@@ -40,16 +40,18 @@ public class company_find_4upgrade extends HttpServlet {
 			UpgradeDao run=new UpgradeDao();
 			CompanyDao companyDao=new CompanyDao();
 //	          	stu.setHid(hid);
-	           List<UpgradeBean> list2 = run.findUpgradeBean(appid);
+	           List<UpgradeBean> upgradeList = run.findUpgradeBean(appid);
 	           List<Company> companys = companyDao.findCompany(appid);
-	           if (list2.size()>0){
-	           	Lg.e("得到更新版本信息",list2.get(0));
-				   request.setAttribute("upgrade", list2.get(0));
+	           if (upgradeList.size()>0){
+	           	Lg.e("得到更新版本信息",upgradeList.get(0));
+				   request.setAttribute("upgrade", upgradeList.get(0));
 				   request.getRequestDispatcher("MGM/Company_set_upgrade.jsp").forward(request, response);
 			   }else{
 				   UpgradeBean bean = new UpgradeBean();
 				   bean.CompanyName =companys.get(0).CompanyName;
 				   bean.AppVersion =companys.get(0).AppVersion;
+				   bean.AppVersion2 =companys.get(0).AppVersion2;
+				   bean.AppVersion3 =companys.get(0).AppVersion3;
 				   bean.AppID =appid;
 				   bean.UpgradeLog ="升级提示";
 				   bean.UpgradeUrl ="http://148.70.108.65:8080/AppFile/GZWS/app-debug.apk";

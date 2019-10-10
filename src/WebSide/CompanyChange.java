@@ -23,6 +23,8 @@ public class CompanyChange extends HttpServlet {
         Lg.e("进入公司信息修改");
         String company_name = request.getParameter("company_name");
         String app_version = request.getParameter("app_version");
+        String app_version2 = request.getParameter("app_version2");
+        String app_version3 = request.getParameter("app_version3");
         String app_id = request.getParameter("app_id");
         String kd_version = request.getParameter("kd_version");
         String address = request.getParameter("address");
@@ -33,7 +35,7 @@ public class CompanyChange extends HttpServlet {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date curDate = new Date();
         String create_time = format.format(curDate);
-        Company company = new Company(company_name,app_version,kd_version,app_id,img_logo_url,phone,address,remark,end_time,"0",create_time);
+        Company company = new Company(company_name,app_version,app_version2,app_version3,kd_version,app_id,img_logo_url,phone,address,remark,end_time,"0",create_time);
         Lg.e("得到修改的公司",company);
         CompanyDao webDao = new CompanyDao();
         boolean ok = webDao.changeCompany(company);

@@ -39,17 +39,7 @@ public class UpgradeDao {
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
-				UpgradeBean bean = new UpgradeBean();
-				bean.uid = rs.getInt("uid");
-				bean.CompanyName = rs.getString("CompanyName");
-				bean.AppVersion = rs.getString("App_Version");
-				bean.AppID = rs.getString("AppID");
-				bean.EndTime = rs.getString("EndTime_server");
-				bean.UpgradeLog = rs.getString("UpgradeLog");
-				bean.UpgradeTime = rs.getString("UpgradeTime");
-				bean.UpgradeUrl = rs.getString("UpgradeUrl");
-				bean.CanUse = rs.getString("CanUse");
-				list.add(bean);
+				list.add(backBean(rs));
 			}
 			Lg.e("得到公司列表",list);
 		} catch (ClassNotFoundException e) {
@@ -151,7 +141,7 @@ public class UpgradeDao {
 			//若本地无该公司的版本信息，则新增
 			if (MathUtil.toD(num)<=0){
 				String SQL = "INSERT INTO Tb_UpgradeBean (CompanyName, App_Version,AppID," +
-						"UpgradeUrl,UpgradeTime,UpgradeLog) VALUES (?,?,?,?,?,?)";
+						"UpgradeUrl,UpgradeTime,UpgradeLog,App_Version2,App_Version3) VALUES (?,?,?,?,?,?,?,?)";
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
 				sta.setString(2,company.AppVersion);
@@ -159,6 +149,8 @@ public class UpgradeDao {
 				sta.setString(4,company.UpgradeUrl);
 				sta.setString(5,company.UpgradeTime);
 				sta.setString(6,company.UpgradeLog);
+				sta.setString(7,company.AppVersion2);
+				sta.setString(8,company.AppVersion3);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -171,7 +163,7 @@ public class UpgradeDao {
 				}
 			}else{
 				String SQL = "UPDATE Tb_UpgradeBean set CompanyName=?, App_Version=?,AppID=?," +
-						"UpgradeUrl=?,UpgradeTime=?,UpgradeLog=? WHERE AppID='"+company.getAppID()+"'";
+						"UpgradeUrl=?,UpgradeTime=?,UpgradeLog=? ,App_Version2=?,App_Version3=? WHERE AppID='"+company.getAppID()+"'";
 				Lg.e("更新数据库语句"+SQL);
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
@@ -180,6 +172,8 @@ public class UpgradeDao {
 				sta.setString(4,company.UpgradeUrl);
 				sta.setString(5,company.UpgradeTime);
 				sta.setString(6,company.UpgradeLog);
+				sta.setString(7,company.AppVersion2);
+				sta.setString(8,company.AppVersion3);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -188,14 +182,17 @@ public class UpgradeDao {
 					changeCompanyLog(company.AppID,company.UpgradeLog);
 					return true;
 				}else{
+					JDBCUtil.close(rs,sta,conn);
 					return false;
 				}
 			}
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			JDBCUtil.close(rs,sta,conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			JDBCUtil.close(rs,sta,conn);
 		}finally {
 //			JDBCUtil.close(rs,sta,conn);
 		}
@@ -216,10 +213,12 @@ public class UpgradeDao {
 			if (MathUtil.toD(num)<=0){
 				return;
 			}
-			String SQL = "UPDATE Tb_Company set App_Version=? WHERE AppID='"+company.AppID+"'";
+			String SQL = "UPDATE Tb_Company set App_Version=?,App_Version2=?,App_Version3=? WHERE AppID='"+company.AppID+"'";
 			Lg.e("更新数据库语句"+SQL);
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,company.AppVersion);
+			sta.setString(2,company.AppVersion2);
+			sta.setString(3,company.AppVersion3);
 			int i = sta.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -323,6 +322,8 @@ public class UpgradeDao {
 		bean.uid = rs.getInt("uid");
 		bean.CompanyName = rs.getString("CompanyName");
 		bean.AppVersion = rs.getString("App_Version");
+		bean.AppVersion2 = rs.getString("App_Version2");
+		bean.AppVersion3 = rs.getString("App_Version3");
 		bean.AppID = rs.getString("AppID");
 		bean.UpgradeLog = rs.getString("UpgradeLog");
 		bean.UpgradeTime = rs.getString("UpgradeTime");

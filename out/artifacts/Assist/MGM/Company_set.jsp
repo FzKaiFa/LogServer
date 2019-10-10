@@ -65,16 +65,27 @@
                 </div>
             </div>
             <div class="form-inline" style="margin-bottom: 10px">
-                <div class="form-group" style="width: 50%">
+                <div class="form-group" style="width: 25%">
                     <a style="margin-right: 20px">APPID:(不可修改)</a>
                     <input type="text" class="form-control" id="app_id" placeholder="Enter telephone" name="app_id"
                            value="<%=company.getAppID()%>" style="width: 100%;margin-right: 10px">
                 </div>
-                <div class="form-group" style="width: 50%">
+                <div class="form-group" style="width: 25%">
                     <a  style="margin-right: 20px">APP版本号:</a>
                     <input type="text" class="form-control" id="app_version" placeholder="Enter telephone" name="app_version"
                            value="<%=company.getAppVersion()%>" style="width: 100%;margin-right: 10px">
                 </div>
+                <div class="form-group" style="width: 25%">
+                    <a  style="margin-right: 20px">APP版本号2:</a>
+                    <input type="text" class="form-control" id="app_version2" placeholder="Enter telephone" name="app_version2"
+                           value="<%=company.getAppVersion2()%>" style="width: 100%;margin-right: 10px">
+                </div>
+                <div class="form-group" style="width: 25%">
+                    <a  style="margin-right: 20px">APP版本号3:</a>
+                    <input type="text" class="form-control" id="app_version3" placeholder="Enter telephone" name="app_version3"
+                           value="<%=company.getAppVersion3()%>" style="width: 100%;margin-right: 10px">
+                </div>
+
             </div>
 
             <div class="form-group">

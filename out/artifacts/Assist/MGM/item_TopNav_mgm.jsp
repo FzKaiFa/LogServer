@@ -55,7 +55,8 @@
     </div>
     <hr>
     <div style="height: 20%;margin-top: 100px;">
-        <a href="../BackUpCompany?json=0"><img src="../img/mgm02.png" alt="">备份</a><br><br>
+        <a class="box" href="./BackUpData.jsp" target="Mgm_Right"><img src="../img/mgm02.png" alt="">数据备份</a><br><br>
+        <%--<a href="../BackUpCompany?json=0"><img src="../img/mgm02.png" alt="">备份</a><br><br>--%>
 
     </div>
 

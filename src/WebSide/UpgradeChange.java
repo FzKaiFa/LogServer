@@ -21,6 +21,8 @@ public class UpgradeChange extends HttpServlet {
         Lg.e("进入公司信息修改");
         String company_name = request.getParameter("company_name");
         String app_version = request.getParameter("app_version");
+        String app_version2 = request.getParameter("app_version2");
+        String app_version3 = request.getParameter("app_version3");
         String app_id = request.getParameter("app_id");
         String upgrade_url = request.getParameter("upgrade_url");
         String upgrade_log = request.getParameter("upgrade_log");
@@ -31,6 +33,8 @@ public class UpgradeChange extends HttpServlet {
         UpgradeBean company = new UpgradeBean(
                 company_name,
                 app_version,
+                app_version2,
+                app_version3,
                 app_id,
                 upgrade_log,upgrade_time,upgrade_url);
         Lg.e("得到修改的公司",company);

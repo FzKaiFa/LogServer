@@ -4,11 +4,13 @@ package Bean;
 public class UpgradeBean {
     public int uid;//公司名称
     public String CompanyName;//公司名称
-    public String AppVersion;//金蝶版本
+    public String AppVersion;//app版本号
+    public String AppVersion2;//app版本号
+    public String AppVersion3;//app版本号
     public String AppID;//程序id
-    public String UpgradeLog;//终止日期格式： 20120101
-    public String UpgradeTime;//终止日期格式： 20120101
-    public String UpgradeUrl;//终止日期格式： 20120101
+    public String UpgradeLog;//更新提示
+    public String UpgradeTime;//更新日期
+    public String UpgradeUrl;//更新地址
 
 
 
@@ -17,17 +19,18 @@ public class UpgradeBean {
     public String EndTime;//终止日期格式： 20120101
     public String CanUse;//0；允许使用，1停止使用
     public String KingdeeVersion;//金蝶版本
-    public String Img_Logo;//备注
-    public String Phone;//备注
-    public String Address;//备注
+    public String Img_Logo;//logo地址
+    public String Phone;//电话号码
+    public String Address;//地址
     public String Remark;//备注
     public String create_time;//创建日期
-//    public String CreateTime;//创建日期
 
 
-    public UpgradeBean(String companyName, String appVersion, String appID, String upgradeLog, String upgradeTime, String upgradeUrl) {
+    public UpgradeBean(String companyName, String appVersion, String appVersion2,String appVersion3,String appID, String upgradeLog, String upgradeTime, String upgradeUrl) {
         CompanyName = companyName;
         AppVersion = appVersion;
+        AppVersion2 = appVersion2;
+        AppVersion3 = appVersion3;
         AppID = appID;
         UpgradeLog = upgradeLog;
         UpgradeTime = upgradeTime;
@@ -50,6 +53,22 @@ public class UpgradeBean {
 
 
     public UpgradeBean() {
+    }
+
+    public String getAppVersion2() {
+        return AppVersion2;
+    }
+
+    public void setAppVersion2(String appVersion2) {
+        AppVersion2 = appVersion2;
+    }
+
+    public String getAppVersion3() {
+        return AppVersion3;
+    }
+
+    public void setAppVersion3(String appVersion3) {
+        AppVersion3 = appVersion3;
     }
 
     public int getUid() {
