@@ -1,6 +1,5 @@
 package WebSide;
 
-import Bean.Company;
 import Bean.UpgradeBean;
 import Utils.CommonUtil;
 import Utils.JDBCUtil;
@@ -94,38 +93,6 @@ public class UpgradeDao {
 		return list;
 	}
 
-	//添加公司信息
-	public boolean addCompany(Company company){
-		try {
-			conn = JDBCUtil.getSQLite4Company();
-			String SQL = "INSERT INTO Tb_Company (CompanyName, App_Version,Kd_Version,AppID,Phone,Address,Remark,EndTime_Server,Img_Logo,CanUse,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-			sta = conn.prepareStatement(SQL);
-			sta.setString(1,company.CompanyName);
-			sta.setString(2,company.AppVersion);
-			sta.setString(3,company.KingdeeVersion);
-			sta.setString(4,company.AppID);
-			sta.setString(5,company.Phone);
-			sta.setString(6,company.Address);
-			sta.setString(7,company.Remark);
-			sta.setString(8,company.EndTime);
-			sta.setString(9,company.Img_Logo);
-			sta.setString(10,company.CanUse);
-			sta.setString(11,company.create_time);
-			int i = sta.executeUpdate();
-			if(i>0){
-				return true;
-			}else{
-				return false;
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCUtil.close(rs,sta,conn);
-		}
-		return false;
-	}
 	//修改版本信息
 	public boolean changeUpgrade(UpgradeBean company){
 		try {
@@ -141,7 +108,7 @@ public class UpgradeDao {
 			//若本地无该公司的版本信息，则新增
 			if (MathUtil.toD(num)<=0){
 				String SQL = "INSERT INTO Tb_UpgradeBean (CompanyName, App_Version,AppID," +
-						"UpgradeUrl,UpgradeTime,UpgradeLog,App_Version2,App_Version3) VALUES (?,?,?,?,?,?,?,?)";
+						"UpgradeUrl,UpgradeTime,UpgradeLog,App_Version2,App_Version3,UpgradeLog2,UpgradeLog3,UpgradeUrl2,UpgradeUrl3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
 				sta.setString(2,company.AppVersion);
@@ -151,6 +118,10 @@ public class UpgradeDao {
 				sta.setString(6,company.UpgradeLog);
 				sta.setString(7,company.AppVersion2);
 				sta.setString(8,company.AppVersion3);
+				sta.setString(9,company.UpgradeLog2);
+				sta.setString(10,company.UpgradeLog3);
+				sta.setString(11,company.UpgradeUrl2);
+				sta.setString(12,company.UpgradeUrl3);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -163,7 +134,7 @@ public class UpgradeDao {
 				}
 			}else{
 				String SQL = "UPDATE Tb_UpgradeBean set CompanyName=?, App_Version=?,AppID=?," +
-						"UpgradeUrl=?,UpgradeTime=?,UpgradeLog=? ,App_Version2=?,App_Version3=? WHERE AppID='"+company.getAppID()+"'";
+						"UpgradeUrl=?,UpgradeTime=?,UpgradeLog=? ,App_Version2=?,App_Version3=?,UpgradeLog2=?,UpgradeLog3=?,UpgradeUrl2=?,UpgradeUrl3=? WHERE AppID='"+company.getAppID()+"'";
 				Lg.e("更新数据库语句"+SQL);
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
@@ -174,6 +145,10 @@ public class UpgradeDao {
 				sta.setString(6,company.UpgradeLog);
 				sta.setString(7,company.AppVersion2);
 				sta.setString(8,company.AppVersion3);
+				sta.setString(9,company.UpgradeLog2);
+				sta.setString(10,company.UpgradeLog3);
+				sta.setString(11,company.UpgradeUrl2);
+				sta.setString(12,company.UpgradeUrl3);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -260,41 +235,6 @@ public class UpgradeDao {
 			JDBCUtil.close(rs,sta,conn);
 		}
 	}
-	//修改公司的Log
-	public boolean changeCompanyLog(Company company){
-		Lg.e("修改的公司",company);
-		try {
-			conn = JDBCUtil.getSQLite4Company();
-			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+company.getAppID()+"'";
-			sta = conn.prepareStatement(findSQL);
-			rs = sta.executeQuery();
-			String num="";
-			while (rs.next()) {
-				num = rs.getString("数量");
-			}
-			Lg.e("存在需要修改的公司信息"+num);
-			if (MathUtil.toD(num)<=0){
-				return false;
-			}
-			String SQL = "UPDATE Tb_Company set Remark=? WHERE AppID='"+company.getAppID()+"'";
-			Lg.e("更新数据库语句"+SQL);
-			sta = conn.prepareStatement(SQL);
-			sta.setString(1,company.Remark);
-			int i = sta.executeUpdate();
-			if(i>0){
-				return true;
-			}else{
-				return false;
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCUtil.close(rs,sta,conn);
-		}
-		return false;
-	}
 
 
 	public boolean deleteCompany(String appid){
@@ -326,8 +266,12 @@ public class UpgradeDao {
 		bean.AppVersion3 = rs.getString("App_Version3");
 		bean.AppID = rs.getString("AppID");
 		bean.UpgradeLog = rs.getString("UpgradeLog");
+		bean.UpgradeLog2 = rs.getString("UpgradeLog2");
+		bean.UpgradeLog3 = rs.getString("UpgradeLog3");
 		bean.UpgradeTime = rs.getString("UpgradeTime");
 		bean.UpgradeUrl = rs.getString("UpgradeUrl");
+		bean.UpgradeUrl2 = rs.getString("UpgradeUrl2");
+		bean.UpgradeUrl3 = rs.getString("UpgradeUrl3");
 		return bean;
 	}
 

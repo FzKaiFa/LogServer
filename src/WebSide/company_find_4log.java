@@ -35,7 +35,7 @@ public class company_find_4log extends HttpServlet {
 		  response.setCharacterEncoding("UTF-8");
 		try {
 	         
-	           String appid=request.getParameter("json");
+			String appid=request.getParameter("json");
 			Lg.e("得到公司id",appid);
 			CompanyDao run=new CompanyDao();
 //	          	stu.setHid(hid);

@@ -24,8 +24,12 @@ public class UpgradeChange extends HttpServlet {
         String app_version2 = request.getParameter("app_version2");
         String app_version3 = request.getParameter("app_version3");
         String app_id = request.getParameter("app_id");
-        String upgrade_url = request.getParameter("upgrade_url");
         String upgrade_log = request.getParameter("upgrade_log");
+        String upgrade_log2 = request.getParameter("upgrade_log2");
+        String upgrade_log3 = request.getParameter("upgrade_log3");
+        String upgrade_url = request.getParameter("upgrade_url");
+        String upgrade_url2 = request.getParameter("upgrade_url2");
+        String upgrade_url3 = request.getParameter("upgrade_url3");
         String upgrade_time = request.getParameter("upgrade_time");
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        Date curDate = new Date();
@@ -36,7 +40,14 @@ public class UpgradeChange extends HttpServlet {
                 app_version2,
                 app_version3,
                 app_id,
-                upgrade_log,upgrade_time,upgrade_url);
+                upgrade_log,
+                upgrade_log2,
+                upgrade_log3,
+                upgrade_url,
+                upgrade_url2,
+                upgrade_url3,
+                upgrade_time
+        );
         Lg.e("得到修改的公司",company);
         UpgradeDao webDao = new UpgradeDao();
         boolean ok = webDao.changeUpgrade(company);

@@ -74,16 +74,6 @@
                            value="<%=company.getAppVersion()%>" style="width: 100%;margin-right: 10px">
                 </div>
                 <div class="form-group" style="width: 25%">
-                    <a  style="margin-right: 20px">APP版本号2:</a>
-                    <input type="text" class="form-control" id="app_version2" placeholder="Enter telephone" name="app_version2"
-                           value="<%=company.getAppVersion2()%>" style="width: 100%;margin-right: 10px">
-                </div>
-                <div class="form-group" style="width: 25%">
-                    <a  style="margin-right: 20px">APP版本号2:</a>
-                    <input type="text" class="form-control" id="app_version3" placeholder="Enter telephone" name="app_version3"
-                           value="<%=company.getAppVersion3()%>" style="width: 100%;margin-right: 10px">
-                </div>
-                <div class="form-group" style="width: 25%">
                     <a style="margin-right: 20px">更新日期:</a>
                     <input type="text" class="form-control" id="upgrade_time" placeholder="Enter telephone" name="upgrade_time"
                            value="<%=company.getUpgradeTime()%>" style="width: 100%;margin-right: 10px">
@@ -96,6 +86,39 @@
                 <%--<input type="text" class="form-control" rows="10" id="upgrade_log" placeholder="Enter telephone" name="upgrade_log"--%>
                        <%--value="<%=company.getUpgradeLog()%>">--%>
             </div>
+            <div class="form-group" style="width: 25%">
+                <a  style="margin-right: 20px">APP版本号2:</a>
+                <input type="text" class="form-control" id="app_version2" placeholder="Enter telephone" name="app_version2"
+                       value="<%=company.getAppVersion2()%>" style="width: 100%;margin-right: 10px">
+            </div>
+            <div class="form-group">
+                <a >更新地址2:</a>
+                <input type="text" class="form-control" id="upgrade_url2" placeholder="Enter telephone" name="upgrade_url2"
+                       value="<%=company.getUpgradeUrl2()%>">
+            </div>
+            <div class="form-group">
+                <a >更新提示2:</a>
+                <textarea class="form-control" rows="10"  id="upgrade_log2"  name="upgrade_log2"><%=company.getUpgradeLog2()%></textarea>
+                <%--<input type="text" class="form-control" rows="10" id="upgrade_log" placeholder="Enter telephone" name="upgrade_log"--%>
+                <%--value="<%=company.getUpgradeLog()%>">--%>
+            </div>
+            <div class="form-group" style="width: 25%">
+                <a  style="margin-right: 20px">APP版本号3:</a>
+                <input type="text" class="form-control" id="app_version3" placeholder="Enter telephone" name="app_version3"
+                       value="<%=company.getAppVersion3()%>" style="width: 100%;margin-right: 10px">
+            </div>
+            <div class="form-group">
+            <a >更新地址3:</a>
+            <input type="text" class="form-control" id="upgrade_url3" placeholder="Enter telephone" name="upgrade_url3"
+                   value="<%=company.getUpgradeUrl3()%>">
+        </div>
+            <div class="form-group">
+                <a >更新提示3:</a>
+                <textarea class="form-control" rows="10"  id="upgrade_log3"  name="upgrade_log3"><%=company.getUpgradeLog3()%></textarea>
+                <%--<input type="text" class="form-control" rows="10" id="upgrade_log" placeholder="Enter telephone" name="upgrade_log"--%>
+                <%--value="<%=company.getUpgradeLog()%>">--%>
+            </div>
+
             <%--<a href="company_delete?json=<%=company.getAppID()%>">删除</a>--%>
 
         </form>

@@ -9,8 +9,12 @@ public class UpgradeBean {
     public String AppVersion3;//app版本号
     public String AppID;//程序id
     public String UpgradeLog;//更新提示
+    public String UpgradeLog2;//更新提示
+    public String UpgradeLog3;//更新提示
     public String UpgradeTime;//更新日期
     public String UpgradeUrl;//更新地址
+    public String UpgradeUrl2;//更新地址
+    public String UpgradeUrl3;//更新地址
 
 
 
@@ -26,15 +30,19 @@ public class UpgradeBean {
     public String create_time;//创建日期
 
 
-    public UpgradeBean(String companyName, String appVersion, String appVersion2,String appVersion3,String appID, String upgradeLog, String upgradeTime, String upgradeUrl) {
+    public UpgradeBean(String companyName, String appVersion, String appVersion2,String appVersion3,String appID, String upgradeLog,String upgradeLog2,String upgradeLog3, String upgradeUrl, String upgradeUrl2, String upgradeUrl3, String upgradeTime) {
         CompanyName = companyName;
         AppVersion = appVersion;
         AppVersion2 = appVersion2;
         AppVersion3 = appVersion3;
         AppID = appID;
         UpgradeLog = upgradeLog;
+        UpgradeLog2 = upgradeLog2;
+        UpgradeLog3 = upgradeLog3;
         UpgradeTime = upgradeTime;
         UpgradeUrl = upgradeUrl;
+        UpgradeUrl2 = upgradeUrl2;
+        UpgradeUrl3 = upgradeUrl3;
     }
 
     public UpgradeBean(Company company) {
@@ -53,6 +61,38 @@ public class UpgradeBean {
 
 
     public UpgradeBean() {
+    }
+
+    public String getUpgradeUrl2() {
+        return UpgradeUrl2;
+    }
+
+    public void setUpgradeUrl2(String upgradeUrl2) {
+        UpgradeUrl2 = upgradeUrl2;
+    }
+
+    public String getUpgradeUrl3() {
+        return UpgradeUrl3;
+    }
+
+    public void setUpgradeUrl3(String upgradeUrl3) {
+        UpgradeUrl3 = upgradeUrl3;
+    }
+
+    public String getUpgradeLog2() {
+        return UpgradeLog2;
+    }
+
+    public void setUpgradeLog2(String upgradeLog2) {
+        UpgradeLog2 = upgradeLog2;
+    }
+
+    public String getUpgradeLog3() {
+        return UpgradeLog3;
+    }
+
+    public void setUpgradeLog3(String upgradeLog3) {
+        UpgradeLog3 = upgradeLog3;
     }
 
     public String getAppVersion2() {
