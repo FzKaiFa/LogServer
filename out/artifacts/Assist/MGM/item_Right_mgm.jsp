@@ -11,6 +11,11 @@
 <%@ page import="WebSide.FeedBack" %>
 <%@ page import="WebSide.CompanyDao" %>
 <%@ page import="Bean.Company" %>
+<%@ page import="WebSide.StatisticalDao" %>
+<%@ page import="Bean.LiveDataBean" %>
+<%@ page import="Utils.Lg" %>
+<%@ page import="Utils.MathUtil" %>
+<%@ page import="Utils.CommonUtil" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -26,32 +31,166 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link type="text/javascript" src="js/swiper.min.js">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/oldie.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
 </head>
+<style type="text/css">
+    .cardBox {
+        width: 200px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        float: left;
+        margin-left: 20px;
+        /*margin-right: 10px;*/
+        /*padding: 5px;*/
+        /*padding-top: 15px;*/
+    }
+
+    .headerBox {
+        color: #fff;
+        padding: 10px;
+        font-size: 15px;
+        height: 60px;
+    }
+
+    .bodyBox {
+        padding: 10px;
+    }
+
+    .bodyBox p {
+        margin-left: 5px;
+    }
+    .statiscard {
+        margin:12px;
+        width: 30%;
+        height: 150px;
+        text-align: center;
+        padding: 60px;
+        background-color: #5ea4fe;
+    }
+</style>
 <body>
 <jsp:include page="../headLayout.jsp"/>
+
+<div>
+    <br/>
+    <h2 style="width: 200px;text-align:center">概况-></h2>
+</div>
+<hr/>
 <%
     CompanyDao aa = new CompanyDao();
+    StatisticalDao statisticalDao = new StatisticalDao();
 //    List list = (List) request.getAttribute("pl_list");
     String companyNum = aa.getCompanyNum();
+    String statisticalNum = statisticalDao.getStatisticalNum();
+    String statisticalLiveUserNum = statisticalDao.getStatisticalLiveUserNum();
+    String thisMon= CommonUtil.getTime(true);
+    List<LiveDataBean> liveData = statisticalDao.getStatisticalLiveData(thisMon.substring(0,thisMon.length()-2));
+    List<String> dayList = new ArrayList<>();
+    for (int i = 0; i < 30; i++) {
+        dayList.add(i,"0");
+    }
+    Lg.e("得到daylist1111"+dayList.size(),dayList);
 
+    for (int i = 0; i < 31; i++) {
+        for (int j = 0; j < liveData.size(); j++) {
+            if (MathUtil.toInt(liveData.get(j).LDay)==i){
+                Lg.e("替换"+i+"--"+liveData.get(j).LNum);
+                dayList.add(i-1,liveData.get(j).LNum);
+            }
+        }
+    }
+
+        Lg.e("得到daylist"+dayList.size(),dayList);
 %>
 
 <%--<input type="button" class="btn btn-outline-primary"  value="刷新" onclick="window.location.reload();"/>--%>
-<div class="container" style="margin-top:30px">
-    <div class="row">
-
-        <%--<div class="col-sm-4">--%>
-        <div class="column card" style="margin: 16px">
-            <div class="card-body">
-                <%--<button type="submit" class="btn btn-primary"><a class="box" style="color: black" href="Case.jsp" target="ManageRight">首页</a></button>--%>
-
-                <h3 class="card-text"><a class="box" href="CompanyList.jsp" target="Mgm_Right">欢迎来到项目管理系统<%=companyNum%></a></h3>
-                <%--<a href="#" class="card-link">Another link</a>--%>
+<div style="margin:30px">
+        <div class="row">
+            <div class="card statiscard">
+                <h3>累计项目数:  <%=companyNum%></h3>
+            </div>
+            <div class="statiscard card">
+                <h3>累计用户数:  <%=statisticalNum%></h3>
+            </div>
+            <div class="statiscard card">
+                <h3>今日活跃度:  <%=statisticalLiveUserNum%></h3>
             </div>
         </div>
-        <%--</div>--%>
-    </div>
 </div>
+<hr/>
+
+
+<div id="container" style="width:100%;height:400px"></div>
+<script>
+    // JS 代码
+    var chart = Highcharts.chart('container', {
+        title: {
+            text: '当月活跃度情况'
+        },
+//        subtitle: {
+//            text: '数据来源：thesolarfoundation.com'
+//        },
+        yAxis: {
+            title: {
+                text: '用户数'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 1
+            }
+        },
+        series: [{
+            name: '活跃人数',
+            data: <%=dayList%>
+//            data:[5, 10, 20, 30, 30, 30, 2, 20, 30, 30, 30, 2, 20, 30, 30, 30, 2, 20, 30, 30, 30, 2, 20, 30, 30, 30, 2]
+        }
+// , {
+//            name: '工人',
+//            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+//        }, {
+//            name: '销售',
+//            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+//        }, {
+//            name: '项目开发',
+//            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+//        }, {
+//            name: '其他',
+//            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+//        }
+        ],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
+</script>
+
+
 </body>
 
 

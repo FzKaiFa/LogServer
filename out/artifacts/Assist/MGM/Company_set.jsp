@@ -37,6 +37,7 @@
     //获得number
     Company company = (Company) request.getAttribute("company");
 %>
+
 <jsp:include page="../headLayout.jsp"/>
 <div>
     <br/>
@@ -108,17 +109,30 @@
                 <input type="text" class="form-control" id="img_logo_url" placeholder="Enter telephone" name="img_logo_url"
                        value="<%=company.getImg_Logo()%>">
             </div>
-            <div class="form-group">
-                <a >项目Log日志:</a>
-                <%--<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"--%>
-                       <%--value="<%=company.getRemark()%>">--%>
-                <textarea class="form-control" rows="5" id="remark"  name="remark"><%=company.getRemark()%></textarea>
+            <%--<div class="form-group">--%>
+                <%--<a >项目Log日志:</a>--%>
+                <%--&lt;%&ndash;<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"&ndash;%&gt;--%>
+                       <%--&lt;%&ndash;value="<%=company.getRemark()%>">&ndash;%&gt;--%>
+                <%--<textarea class="form-control" rows="5" id="remark"  name="remark"><%=company.getRemark()%></textarea>--%>
 
-            </div>
+            <%--</div>--%>
 
-            <a href="company_delete?json=<%=company.getAppID()%>">删除</a>
+            <%--<a href="company_delete?json=" onclick="cpdelete(<%=company.getAppID()%>)">删除</a>--%>
 
         </form>
+        <button  class="btn btn-outline-danger" style="margin: 50px;width: 150px;" onclick="cpdelete()">删除</button>
+        <script type="text/javascript">
+            function cpdelete(){
+                var r=confirm("是否删除该公司的数据，版本数据也将会一并删除，请注意");
+                if (r==true){
+                    window.location.href="company_delete?json=<%=company.getAppID()%>";
+                }
+//                else{
+//                    x="你按下了\"取消\"按钮!";
+//                }
+//                document.getElementById("demo").innerHTML=x;
+            }
+        </script>
         <%--<form action="../company_delete" method="post">--%>
             <%--<input type="text" class="form-control" id="app_id2" placeholder="Enter telephone" name="app_id"--%>
                    <%--value="<%=company.getAppID()%>">--%>
@@ -126,6 +140,7 @@
         <%--</form>--%>
     </div>
 </div>
+
 
 
 <%--<script type="text/javascript">--%>

@@ -18,7 +18,7 @@ public class CompanyChangeLog extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        Lg.e("进入公司信息修改");
+        Lg.e("进入--程序更新日志");
 //        String company_name = request.getParameter("company_name");
 //        String app_version = request.getParameter("app_version");
         String app_id = request.getParameter("app_id");

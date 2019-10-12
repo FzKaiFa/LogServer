@@ -32,7 +32,7 @@ public class company_delete extends HttpServlet {
 		// TODO Auto-generated method stub
 		  request.setCharacterEncoding("UTF-8");
 		  response.setCharacterEncoding("UTF-8");
-		  Lg.e("进入删除公司");
+		  Lg.e("删除公司");
 		try {
 	         
 	           String appid=request.getParameter("json");

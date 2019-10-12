@@ -18,7 +18,7 @@ public class UpgradeChange extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        Lg.e("进入公司信息修改");
+        Lg.e("进入---版本信息修改");
         String company_name = request.getParameter("company_name");
         String app_version = request.getParameter("app_version");
         String app_version2 = request.getParameter("app_version2");

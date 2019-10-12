@@ -96,12 +96,12 @@
                 <input type="text" class="form-control" id="img_logo_url" placeholder="Enter telephone" name="img_logo_url"
                        value="">
             </div>
-            <div class="form-group">
-                <a for="pwd">备注:</a>
-                <textarea class="form-control" rows="5" id="remark"  name="remark"></textarea>
-            <%--<textarea class="form-control" rows="5" id="remark"  name="remark" placeholder="Enter telephone"></textarea>--%>
+            <%--<div class="form-group">--%>
+                <%--<a for="pwd">备注:</a>--%>
+                <%--<textarea class="form-control" rows="5" id="remark"  name="remark"></textarea>--%>
+            <%--&lt;%&ndash;<textarea class="form-control" rows="5" id="remark"  name="remark" placeholder="Enter telephone"></textarea>&ndash;%&gt;--%>
 
-            </div>
+            <%--</div>--%>
 
             <div class="form-check">
                 <!-- <label class="form-check-label">

@@ -79,13 +79,15 @@
                            value="<%=company.getUpgradeTime()%>" style="width: 100%;margin-right: 10px">
                 </div>
             </div>
-
             <div class="form-group">
                 <a >更新提示:</a>
                 <textarea class="form-control" rows="10"  id="upgrade_log"  name="upgrade_log"><%=company.getUpgradeLog()%></textarea>
                 <%--<input type="text" class="form-control" rows="10" id="upgrade_log" placeholder="Enter telephone" name="upgrade_log"--%>
                        <%--value="<%=company.getUpgradeLog()%>">--%>
             </div>
+
+            <h6  style="color:brown;margin-bottom: 55px">PS：若只有一个版本，不用录入以下数据</h6>
+
             <div class="form-group" style="width: 25%">
                 <a  style="margin-right: 20px">APP版本号2:</a>
                 <input type="text" class="form-control" id="app_version2" placeholder="Enter telephone" name="app_version2"

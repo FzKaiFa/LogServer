@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../css/colors.css">
     <style type="text/css">
         img{
+            padding: 15px;
             width: 60px;
             height: 60px;
         }
@@ -42,20 +43,18 @@
     <div style="height: 80%">
         <a href = 'item_Right_mgm.jsp' target = 'Mgm_Right'><img src="../img/gxlog.jpg" alt="" style="height: 55px"></a>
 
-        <a class="box" href="CompanyList.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="" >项目管理</a><br><br>
+        <a class="box" href="CompanyList.jsp" target="Mgm_Right"><img src="../img/left_company_set.png" alt="" >项目管理</a><br><br>
 
-        <a class="box" href="UpgradeList.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">版本管理</a><br><br>
+        <a class="box" href="UpgradeList.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">版本管理</a><br><br>
 
-        <a class="box" href="../registerMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">注册表</a><br><br>
+        <%--<a class="box" href="../registerMsg.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">注册表</a><br><br>--%>
 
-        <%--<a class="box" href="CompanyLog.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">修改日志</a><br><br>--%>
-
-        <a class="box" href="../testMsg.jsp" target="Mgm_Right"><img src="../img/menu01.png" alt="">查询信息</a><br><br>
+        <%--<a class="box" href="../testMsg.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">查询信息</a><br><br>--%>
 
     </div>
     <hr>
-    <div style="height: 20%;margin-top: 100px;">
-        <a class="box" href="./BackUpData.jsp" target="Mgm_Right"><img src="../img/mgm02.png" alt="">数据备份</a><br><br>
+    <div style="height: 20%;margin-top: 200px;">
+        <a class="box" href="./BackUpData.jsp" target="Mgm_Right"><img src="../img/left_backup.png" alt="">数据备份</a><br><br>
         <%--<a href="../BackUpCompany?json=0"><img src="../img/mgm02.png" alt="">备份</a><br><br>--%>
 
     </div>

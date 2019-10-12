@@ -1,5 +1,6 @@
 package WebSide;
 
+import Bean.LiveDataBean;
 import Bean.StatisticalBean;
 import Utils.CommonUtil;
 import Utils.JDBCUtil;
@@ -50,7 +51,7 @@ public class StatisticalDao {
 		}
 		return list;
 	}
-	//获取版本信息表数量
+	//获取统计信息表中相应公司项目的IMIE用户数的数量
 	public String getStatisticalNum4Appid(String appid){
 		int num=0;
 		try {
@@ -73,6 +74,84 @@ public class StatisticalDao {
 		}
 		return num+"";
 	}
+	//获取统计信息表中的IMIE用户数的数量
+	public String getStatisticalNum(){
+		int num=0;
+		try {
+			conn = JDBCUtil.getSQLite4Statistical();
+			String SQL = "SELECT distinct imie FROM Tb_Statistical";
+			sta = conn.prepareStatement(SQL);
+			rs = sta.executeQuery();
+			while (rs.next()) {
+//			Lg.e("得到行数"+rs.getRow());
+//			num=rs.getRow();
+				num++;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return num+"";
+	}
+	//获取统计信息表中的当天的活跃用户数
+	public String getStatisticalLiveUserNum(){
+		int num=0;
+		try {
+
+			conn = JDBCUtil.getSQLite4Statistical();
+			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
+			sta = conn.prepareStatement(SQL);
+			sta.setString(1,CommonUtil.getTime(true));
+			rs = sta.executeQuery();
+			while (rs.next()) {
+//			Lg.e("得到行数"+rs.getRow());
+//			num=rs.getRow();
+				num++;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return num+"";
+	}
+	//获取统计信息表中的当天的活跃用户数
+	public List<LiveDataBean> getStatisticalLiveData(String time){
+		List<LiveDataBean> liveDataBeans = new ArrayList<>();
+		try {
+
+			conn = JDBCUtil.getSQLite4Statistical();
+//			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
+			String SQL = "Select count(1) as 行数,realtime From Tb_Statistical  where realtime like '"+time+"%' group by  realtime";
+			sta = conn.prepareStatement(SQL);
+			rs = sta.executeQuery();
+			while (rs.next()) {
+				LiveDataBean bean = new LiveDataBean();
+				bean.LNum = rs.getString("行数");
+				bean.LTime = rs.getString("realtime");
+				bean.LDay = bean.LTime.substring(bean.LTime.length()-2,bean.LTime.length());
+				liveDataBeans.add(bean);
+//			Lg.e("得到行数"+rs.getRow());
+//			num=rs.getRow();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		Lg.e("得到活跃度数据",liveDataBeans);
+		return liveDataBeans;
+	}
+
+
+
 
 	//获取版本信息
 	public List<StatisticalBean> findStatisticalBean(String appid){

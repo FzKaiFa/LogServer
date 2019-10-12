@@ -89,7 +89,7 @@
                     <td><%=rs.getEndTime() %></td>
                     <%--<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>--%>
                         <td><a href="../company_find?json=<%=rs.getAppID()%>">管理</a></td>
-                        <td><a href="../company_find_4log?json=<%=rs.getAppID()%>">更新日志</a></td>
+                        <td><a href="../company_find_4log?json=<%=rs.getAppID()%>">程序更新日志</a></td>
                 </tr>
                 </tbody>
                 <%} %>

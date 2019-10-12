@@ -93,7 +93,7 @@ public class UpgradeDao {
 		return list;
 	}
 
-	//修改版本信息
+	//修改版本信息，当存在时，更新，不存在就新增;之后更新公司信息表中的app版本号和日志信息
 	public boolean changeUpgrade(UpgradeBean company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
@@ -127,7 +127,7 @@ public class UpgradeDao {
 					//更新公司信息表的app版本号
 					changeCompanyVersion(company);
 					//更新公司信息表的log日志
-					changeCompanyLog(company.AppID,company.UpgradeLog);
+					changeCompanyLog(company);
 					return true;
 				}else{
 					return false;
@@ -154,7 +154,7 @@ public class UpgradeDao {
 					//更新公司信息表的app版本号
 					changeCompanyVersion(company);
 					//更新公司信息表的log日志
-					changeCompanyLog(company.AppID,company.UpgradeLog);
+					changeCompanyLog(company);
 					return true;
 				}else{
 					JDBCUtil.close(rs,sta,conn);
@@ -204,10 +204,10 @@ public class UpgradeDao {
 		}
 	}
 	//更新版本信息表时，同时更新公司信息表的Log日志信息
-	private void changeCompanyLog(String appid,String log){
+	private void changeCompanyLog(UpgradeBean company){
 		try {
 			conn = JDBCUtil.getSQLite4Company();
-			String findSQL ="select COUNT(*) as 数量,Remark from Tb_Company where AppID='"+appid+"'";
+			String findSQL ="select COUNT(*) as 数量,Remark from Tb_Company where AppID='"+company.AppID+"'";
 			sta = conn.prepareStatement(findSQL);
 			rs = sta.executeQuery();
 			String num="";
@@ -221,8 +221,12 @@ public class UpgradeDao {
 				return;
 			}
 			StringBuilder builder = new StringBuilder();
-			builder.append(CommonUtil.getTimeLong(true)).append("\n").append(log).append("\n").append("\n").append(remark);
-			String SQL = "UPDATE Tb_Company set Remark=? WHERE AppID='"+appid+"'";
+			builder.append(CommonUtil.getTimeLong(true))
+					.append("\n")
+					.append(company.UpgradeLog)
+					.append("\n").append("\n")
+					.append(remark);
+			String SQL = "UPDATE Tb_Company set Remark=? WHERE AppID='"+company.AppID+"'";
 			Lg.e("更新数据库语句"+SQL);
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,builder.toString());
