@@ -255,7 +255,9 @@ public class CompanyDao {
 		return false;
 	}
 
-
+	public String getDeleteCode(){
+		return "fangzuokeji12345789!@#$%";
+	}
 	//删除公司项目相关数据
 	public boolean deleteCompany(String appid){
 		try {

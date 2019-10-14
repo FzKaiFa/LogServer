@@ -102,7 +102,7 @@ public class StatisticalDao {
 		try {
 
 			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
+			String SQL = "SELECT * FROM Tb_Statistical WHERE realTime =?";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,CommonUtil.getTime(true));
 			rs = sta.executeQuery();
@@ -193,7 +193,7 @@ public class StatisticalDao {
 			//若本地无该公司的版本信息，则新增
 			if (MathUtil.toD(num)<=0){
 				String SQL = "INSERT INTO Tb_Statistical (CompanyName, App_Version,AppID,imie," +
-						"realTime,num,onActivity) VALUES (?,?,?,?,?,?,?)";
+						"realTime,num,onActivity,phone) VALUES (?,?,?,?,?,?,?,?)";
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
 				sta.setString(2,company.AppVersion);
@@ -202,6 +202,7 @@ public class StatisticalDao {
 				sta.setString(5,company.realTime);
 				sta.setString(6,"1");
 				sta.setString(7,company.onActivity);
+				sta.setString(8,company.phone);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -215,13 +216,14 @@ public class StatisticalDao {
 			}else{
 				int addnum=MathUtil.toInt(num)+1;
 				Lg.e("写入数量:"+addnum);
-				String SQL = "UPDATE Tb_Statistical set num=?,realTime =? WHERE AppID=? AND imie = ?";
+				String SQL = "UPDATE Tb_Statistical set num=?,realTime =?,phone=? WHERE AppID=? AND imie = ?";
 //				Lg.e("更新数据库语句"+SQL);
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,addnum+"");
 				sta.setString(2,company.realTime);
-				sta.setString(3,company.AppID);
-				sta.setString(4,company.imie);
+				sta.setString(3,company.phone);
+				sta.setString(4,company.AppID);
+				sta.setString(5,company.imie);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号

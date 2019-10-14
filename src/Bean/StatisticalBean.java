@@ -10,6 +10,7 @@ public class StatisticalBean {
     public String realTime;//更新提示
     public String num;//更新提示
     public String onActivity;//更新日期
+    public String phone;//更新日期
 
 
 
@@ -79,5 +80,13 @@ public class StatisticalBean {
 
     public void setOnActivity(String onActivity) {
         this.onActivity = onActivity;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

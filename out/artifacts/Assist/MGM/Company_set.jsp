@@ -27,7 +27,7 @@
 
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <%--<link rel="stylesheet" href="css/bootstrap.min.css">--%>
 </head>
 
 <body>
@@ -36,6 +36,7 @@
     CompanyDao companyDao = new CompanyDao();
     //获得number
     Company company = (Company) request.getAttribute("company");
+    String code = companyDao.getDeleteCode();
 %>
 
 <jsp:include page="../headLayout.jsp"/>
@@ -109,6 +110,8 @@
                 <input type="text" class="form-control" id="img_logo_url" placeholder="Enter telephone" name="img_logo_url"
                        value="<%=company.getImg_Logo()%>">
             </div>
+            <input type="hidden" class="form-control" id="code" placeholder="Enter telephone" name="code"
+                   value="<%=companyDao.getDeleteCode()%>">
             <%--<div class="form-group">--%>
                 <%--<a >项目Log日志:</a>--%>
                 <%--&lt;%&ndash;<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"&ndash;%&gt;--%>
@@ -123,10 +126,19 @@
         <button  class="btn btn-outline-danger" style="margin: 50px;width: 150px;" onclick="cpdelete()">删除</button>
         <script type="text/javascript">
             function cpdelete(){
-                var r=confirm("是否删除该公司的数据，版本数据也将会一并删除，请注意");
-                if (r==true){
-                    window.location.href="company_delete?json=<%=company.getAppID()%>";
+                var codedd = document.getElementsByName("code");
+                var person=prompt("是否删除该公司的数据，版本数据也将会一并删除，请注意\n请输入操作码","Harry Potter");
+                if (person!=null && person!=""){
+//                    if(person=="fangzuokeji12345789!@#$%"){
+                        window.location.href="company_delete?json=<%=company.getAppID()%>&pwd="+person;
+//                    }else{
+//                        alert("删除失败，操作码错误");
+//                    }
                 }
+                <%--var r=confirm("是否删除该公司的数据，版本数据也将会一并删除，请注意");--%>
+                <%--if (r==true){--%>
+                    <%--window.location.href="company_delete?json=<%=company.getAppID()%>";--%>
+                <%--}--%>
 //                else{
 //                    x="你按下了\"取消\"按钮!";
 //                }
