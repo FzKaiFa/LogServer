@@ -29,12 +29,12 @@ public class UpgradeDao {
 	PreparedStatement sta = null;
 	ResultSet rs = null;
 
-	//获取所有公司信息
+	//获取所有版本信息
 	public List<UpgradeBean> getUpgradeList(){
 		List<UpgradeBean> list = new ArrayList<>();
 		try {
 			conn = JDBCUtil.getSQLite4Company();
-			String SQL = "SELECT * FROM Tb_UpgradeBean ORDER BY uid DESC ";
+			String SQL = "SELECT * FROM Tb_UpgradeBean ORDER BY UpgradeTime DESC ";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {

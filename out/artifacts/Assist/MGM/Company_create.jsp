@@ -86,10 +86,17 @@
                 <input type="text" class="form-control" id="address" placeholder="Enter telephone" name="address"
                        value="">
             </div>
-            <div class="form-group">
-                <a for="pwd">时间控制日期(20190101):</a>
-                <input type="text" class="form-control" id="end_time" placeholder="Enter telephone" name="end_time"
-                       value="">
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">时间控制日期(20190101):</a>
+                    <input type="text" class="form-control" id="end_time" placeholder="Enter telephone" name="end_time"
+                           value="">
+                </div>
+                <div class="form-group" style="width: 50%">
+                    <a  style="margin-right: 20px">最大用户数:</a>
+                    <input type="text" class="form-control" id="user_max" placeholder="Enter telephone" name="user_max"
+                           style="width: 100%;margin-right: 10px">
+                </div>
             </div>
             <div class="form-group">
                 <a for="pwd">公司Logo:</a>

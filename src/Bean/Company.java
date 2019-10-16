@@ -15,9 +15,10 @@ public class Company {
     public String EndTime;//终止日期格式： 20120101
     public String CanUse;//0；允许使用，1停止使用
     public String create_time;//创建日期
-//    public String CreateTime;//创建日期
+    public String user_num_max;//创建日期
 
-    public Company(String companyName, String appVersion,String appVersion2,String appVersion3, String kingdeeVersion, String appID, String img_Logo, String phone, String address, String remark, String endTime, String canUse, String createTime) {
+    public Company(String companyName, String appVersion,String appVersion2,String appVersion3, String kingdeeVersion, String appID,
+                   String img_Logo, String phone, String address, String remark, String endTime, String canUse, String createTime,String usermax) {
         CompanyName = companyName;
         AppVersion = appVersion;
         AppVersion2 = appVersion2;
@@ -31,8 +32,25 @@ public class Company {
         EndTime = endTime;
         CanUse = canUse;
         create_time = createTime;
+        user_num_max = usermax;
     }
     public Company() {
+    }
+
+    public String getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(String create_time) {
+        this.create_time = create_time;
+    }
+
+    public String getUser_num_max() {
+        return user_num_max;
+    }
+
+    public void setUser_num_max(String user_num_max) {
+        this.user_num_max = user_num_max;
     }
 
     public String getAppVersion2() {

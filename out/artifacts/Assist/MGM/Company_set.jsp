@@ -100,10 +100,17 @@
                 <input type="text" class="form-control" id="address" placeholder="Enter telephone" name="address"
                        value="<%=company.getAddress()%>">
             </div>
-            <div class="form-group">
-                <a >时间控制日期(20190101):</a>
-                <input type="text" class="form-control" id="end_time" placeholder="Enter telephone" name="end_time"
-                       value="<%=company.getEndTime()%>">
+            <div class="form-inline" style="margin-bottom: 10px">
+                <div class="form-group" style="width: 50%">
+                    <a style="margin-right: 20px">时间控制日期(20190101):</a>
+                    <input type="text" class="form-control" id="end_time" placeholder="Enter telephone" name="end_time"
+                           value="<%=company.getEndTime()%>">
+                </div>
+                <div class="form-group" style="width: 50%">
+                    <a  style="margin-right: 20px">最大用户数:</a>
+                    <input type="text" class="form-control" id="user_max" placeholder="Enter telephone" name="user_max"
+                           value="<%=company.getUser_num_max()%>">
+                </div>
             </div>
             <div class="form-group">
                 <a >公司Logo:</a>

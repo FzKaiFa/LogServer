@@ -143,7 +143,7 @@ public class CompanyDao {
 			if (MathUtil.toD(num)<=0){
 				return false;
 			}
-			String SQL = "UPDATE Tb_Company set CompanyName=?, App_Version=?,Kd_Version=?,AppID=?,Phone=?,Address=?,Remark=?,EndTime_Server=?,Img_Logo=?,CanUse=?,create_time=?, App_Version2=?, App_Version3=?  WHERE AppID='"+company.getAppID()+"'";
+			String SQL = "UPDATE Tb_Company set CompanyName=?, App_Version=?,Kd_Version=?,AppID=?,Phone=?,Address=?,Remark=?,EndTime_Server=?,Img_Logo=?,CanUse=?,create_time=?, App_Version2=?, App_Version3=? , user_num_max=? WHERE AppID='"+company.getAppID()+"'";
 			Lg.e("更新数据库语句"+SQL);
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,company.CompanyName);
@@ -159,6 +159,7 @@ public class CompanyDao {
 			sta.setString(11,company.create_time);
 			sta.setString(12,company.AppVersion2);
 			sta.setString(13,company.AppVersion3);
+			sta.setString(14,company.user_num_max);
 			int i = sta.executeUpdate();
 			if(i>0){
 				//更新版本信息表的app版本号
@@ -345,6 +346,7 @@ public class CompanyDao {
 		bean.Phone = rs.getString("Phone");
 		bean.Address = rs.getString("Address");
 		bean.create_time = rs.getString("create_time");
+		bean.user_num_max = rs.getString("user_num_max");
 		return bean;
 	}
 
