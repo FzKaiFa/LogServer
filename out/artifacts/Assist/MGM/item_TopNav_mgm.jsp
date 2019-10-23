@@ -47,6 +47,8 @@
 
         <a class="box" href="UpgradeList.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">版本管理</a><br><br>
 
+        <a class="box" href="UserControlList.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">用户控制</a><br><br>
+
         <%--<a class="box" href="../registerMsg.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">注册表</a><br><br>--%>
 
         <%--<a class="box" href="../testMsg.jsp" target="Mgm_Right"><img src="../img/left_upgrade.png" alt="">查询信息</a><br><br>--%>

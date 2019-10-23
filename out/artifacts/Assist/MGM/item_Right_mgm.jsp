@@ -88,8 +88,8 @@
 //    List list = (List) request.getAttribute("pl_list");
     String companyNum = aa.getCompanyNum();
     String statisticalNum = statisticalDao.getStatisticalNum();
-    String statisticalLiveUserNum = statisticalDao.getStatisticalLiveUserNum();
-    String statisticalActiveNum = statisticalDao.getStatisticalActiveNum();
+    String statisticalLiveUserNum = statisticalDao.getStatisticalLiveUserNum();//获取统计信息表中的当天的活跃用户数
+    String statisticalActiveNum = statisticalDao.getStatisticalActiveNum();//获取统计信息表中的当天的活跃度
     String thisMon= CommonUtil.getTime(true);
     List<LiveDataBean> liveData = statisticalDao.getStatisticalLiveData4User(thisMon.substring(0,thisMon.length()-2));
     List<LiveDataBean> liveData4Num = statisticalDao.getStatisticalLiveData4Num(thisMon.substring(0,thisMon.length()-2));
@@ -124,7 +124,7 @@
 <%--<input type="button" class="btn btn-outline-primary"  value="刷新" onclick="window.location.reload();"/>--%>
 <div style="margin:30px">
         <div class="row">
-            <div class="card statiscard">
+            <div class="card statiscard" onclick="location.href='CompanyList.jsp'">
                 <h3>累计项目数:  <%=companyNum%></h3>
             </div>
             <div class="statiscard card">

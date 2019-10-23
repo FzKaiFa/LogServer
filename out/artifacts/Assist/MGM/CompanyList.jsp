@@ -59,18 +59,21 @@
         <div class="card-body">
             <table class="table">
                 <thead>
+                <%
+                    CompanyDao aa = new CompanyDao();
+                    StatisticalDao statisticalDao = new StatisticalDao();
+                    String statisticalNum = statisticalDao.getStatisticalNum();
+                %>
                 <tr>
                     <th>公司名称</th>
                     <th>APP版本号</th>
-                    <th>当前用户数</th>
+                    <th>当前用户数(<%=statisticalNum%>)</th>
                     <th>公司地址</th>
-                    <th>时间控制日期</th>
+                    <%--<th>时间控制日期</th>--%>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    CompanyDao aa = new CompanyDao();
-                    StatisticalDao statisticalDao = new StatisticalDao();
 //    List list = (List) request.getAttribute("pl_list");
                     List list = aa.getCompany();
                     if (list==null){
@@ -84,7 +87,7 @@
                 <tr>
                     <td><%=rs.getCompanyName() %></td>
                     <td><%=rs.getAppVersion() %></td>
-                    <td><%=statisticalDao.getStatisticalNum4Appid(rs.getAppID()) %></td>
+                    <td><a href="../ActiveUser_find?json=<%=rs.getAppID()%>"><%=statisticalDao.getStatisticalNum4Appid(rs.getAppID()) %></a></td>
                     <td><%=rs.getAddress() %></td>
                     <td><%=rs.getEndTime() %></td>
                     <%--<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>--%>

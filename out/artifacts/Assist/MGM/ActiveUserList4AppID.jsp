@@ -49,7 +49,7 @@
 
 <div>
     <br/>
-    <h2 style="width: 200px;text-align:center">活跃度信息-></h2>
+    <h2 style="width: 200px;text-align:center">详情-></h2>
 </div>
 <hr/>
 
@@ -60,19 +60,24 @@
         <div class="card-body">
             <table class="table">
                 <thead>
+                <%
+                    CompanyDao companyDao = new CompanyDao();
+                    StatisticalDao statisticalDao = new StatisticalDao();
+                    List listStat = (List) request.getAttribute("statistical");
+                    List list = statisticalDao.getUpgradeListByData(CommonUtil.getTime(true));
+
+                %>
                 <tr>
-                    <th>公司名称</th>
+                    <th>公司名称(<%=listStat.size()%>)</th>
                     <th>IMIE</th>
+                    <th>版本号</th>
                     <th>活跃日期</th>
                     <%--<th>总用户数</th>--%>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    CompanyDao companyDao = new CompanyDao();
-                    StatisticalDao statisticalDao = new StatisticalDao();
-                    List listStat = (List) request.getAttribute("statistical");
-                    List list = statisticalDao.getUpgradeListByData(CommonUtil.getTime(true));
+
                     if (listStat==null){
                         %><div class="alert alert-info"> 列表数据为空</div><%
                         return;
@@ -84,6 +89,7 @@
                 <tr>
                     <td><%=companyDao.findCompany(rs.getAppID()).get(0).getCompanyName() %></td>
                     <td><%=rs.getImie() %></td>
+                    <td><%=rs.getAppVersion() %></td>
                     <td><%=rs.getRealTime()%></td>
                     <%--<td><%=statisticalDao.getStatisticalNum4Appid(rs.getAppID()) %></td>--%>
                     <%--<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>--%>

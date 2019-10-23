@@ -13,9 +13,7 @@
 <%@ page import="Utils.BaseData" %>
 <%@ page import="Utils.ExcelExport" %>
 <%@ page import="org.apache.poi.hssf.usermodel.HSSFWorkbook" %>
-<%@ page import="WebSide.StatisticalDao" %>
-<%@ page import="Bean.StatisticalBean" %>
-<%@ page import="Utils.CommonUtil" %>
+<%@ page import="WebSide.UserControlDao" %>
 <html>
 <head>
     <title>注册用户管理</title>
@@ -49,45 +47,47 @@
 
 <div>
     <br/>
-    <h2 style="width: 200px;text-align:center">活跃度信息-></h2>
+    <h2 style="width: 200px;text-align:center">用户控制-></h2>
 </div>
 <hr/>
 
-    <div  class="card" style="margin: 10px">
-        <%--<div class="card-header">--%>
-            <%--<button type="button" class="btn btn-outline-primary" value="新增项目信息" onclick="location.href='Company_create.jsp'">新增项目信息</button>--%>
-        <%--</div>--%>
+<div class="container" style="margin-top: 88px">
+    <div  class="card">
         <div class="card-body">
             <table class="table">
                 <thead>
+                <%
+                    CompanyDao aa = new CompanyDao();
+                    UserControlDao userControlDao = new UserControlDao();
+//                    List userControlList = userControlDao.getUserControlList();
+//                    String statisticalNum = statisticalDao.getUserNum4Appid();
+                %>
                 <tr>
                     <th>公司名称</th>
-                    <th>APPID</th>
-                    <th>今日活跃用户数</th>
-                    <th>总用户数</th>
+                    <th>APP版本号</th>
+                    <th>用户数</th>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    CompanyDao companyDao = new CompanyDao();
-                    StatisticalDao statisticalDao = new StatisticalDao();
+
 //    List list = (List) request.getAttribute("pl_list");
-                    List list = statisticalDao.getUpgradeListByData(CommonUtil.getTime(true));
+                    List list = aa.getCompany();
                     if (list==null){
                         %><div class="alert alert-info"> 列表数据为空</div><%
                         return;
                     }
                     for (int i = 0; i < list.size(); i++) {
-                        StatisticalBean rs = (StatisticalBean) list.get(i);
+                        Company rs = (Company) list.get(i);
                 %>
 
                 <tr>
-                    <td><%=companyDao.findCompany(rs.getAppID()).get(0).getCompanyName() %></td>
-                    <td><%=rs.getAppID() %></td>
-                    <td><%=statisticalDao.getActiveUserNum4Appid(rs.getAppID()) %></td>
-                    <td><%=statisticalDao.getStatisticalNum4Appid(rs.getAppID()) %></td>
+                    <td><%=rs.getCompanyName() %></td>
+                    <td><%=rs.getAppVersion() %></td>
+                    <td><%=userControlDao.getUserControlNum4Appid(rs.getAppID() )%></td>
+                    <%--<td><%=rs.getAppID() %></td>--%>
                     <%--<td style="height: 45px;width:80px"><%=rs.getLast_use_date() %></td>--%>
-                        <td><a href="../ActiveUser_find?json=<%=rs.getAppID()%>">详情</a></td>
+                        <td><a href="../company_find_4upgrade?json=<%=rs.getAppID()%>">管理</a></td>
                 </tr>
                 </tbody>
                 <%} %>
@@ -95,6 +95,7 @@
         </div>
 
     </div>
+</div>
 
 
 <%--<table border="0" bgcolor="ccceee" width="750" style="height: 161px;">

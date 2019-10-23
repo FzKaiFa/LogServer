@@ -1,7 +1,7 @@
 package WebSide;
 
 import Bean.LiveDataBean;
-import Bean.StatisticalBean;
+import Bean.UserControlBean;
 import Utils.CommonUtil;
 import Utils.JDBCUtil;
 import Utils.Lg;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatisticalDao {
+public class UserControlDao {
 
 	protected static final String FIELDS_INSERT = "rid,name,password,sex,age,clue,vip";
 	protected static String INSERT_SQL = "insert into user(" + FIELDS_INSERT
@@ -30,12 +30,34 @@ public class StatisticalDao {
 	PreparedStatement sta = null;
 	ResultSet rs = null;
 
-	//通过id获取活跃度信息
-	public List<StatisticalBean> getUpgradeListByAppID(String id){
-		List<StatisticalBean> list = new ArrayList<>();
+	//获取存在的控制公司用户信息
+	public List<UserControlBean> getUserControlList(){
+		List<UserControlBean> list = new ArrayList<>();
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT * FROM Tb_Statistical where AppID = '"+id+"'  GROUP BY imie ORDER BY realTime DESC ";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT * FROM Tb_UserControl  GROUP BY imie ORDER BY realTime DESC ";
+			sta = conn.prepareStatement(SQL);
+			rs = sta.executeQuery();
+			while (rs.next()) {
+				list.add(backBean(rs));
+			}
+			Lg.e("获取存在的控制公司用户信息",list);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(rs,sta,conn);
+		}
+		return list;
+	}
+
+	//通过id获取活跃度信息
+	public List<UserControlBean> getUserControlByAppID(String id){
+		List<UserControlBean> list = new ArrayList<>();
+		try {
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT * FROM Tb_UserControl where AppID = '"+id+"'  GROUP BY imie ORDER BY realTime DESC ";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
@@ -52,16 +74,16 @@ public class StatisticalDao {
 		return list;
 	}
 	//根据当天时间，查询出当天存在活跃用户的项目
-	public List<StatisticalBean> getUpgradeListByData(String time){
-		List<StatisticalBean> list = new ArrayList<>();
+	public List<UserControlBean> getUpgradeListByData(String time){
+		List<UserControlBean> list = new ArrayList<>();
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT AppID  FROM Tb_Statistical where realtime like '"+time+"%' GROUP BY AppID";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT AppID  FROM Tb_UserControl where realtime like '"+time+"%' GROUP BY AppID";
 			Lg.e("获取活跃数据："+SQL);
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
-				StatisticalBean bean = new StatisticalBean();
+				UserControlBean bean = new UserControlBean();
 				bean.AppID = rs.getString("AppID");
 //				bean.imie = rs.getString("num");
 				list.add(bean);
@@ -78,14 +100,14 @@ public class StatisticalDao {
 	}
 
 	//获取统计信息表中相应公司项目的IMIE用户数的数量
-	public String getActiveUserNum4Appid(String appid){
+	public String getUserControlNum4Appid(String appid){
 		int num=0;
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT distinct imie FROM Tb_Statistical WHERE AppID=? AND realTime=?";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT distinct imie FROM Tb_UserControl WHERE AppID=?";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,appid);
-			sta.setString(2,CommonUtil.getTime(true));
+//			sta.setString(2,CommonUtil.getTime(true));
 			rs = sta.executeQuery();
 			while (rs.next()) {
 //			Lg.e("得到行数"+rs.getRow());
@@ -102,11 +124,11 @@ public class StatisticalDao {
 		return num+"";
 	}
 	//获取统计信息表中相应公司项目的IMIE用户数的数量
-	public String getStatisticalNum4Appid(String appid){
+	public String getUserNum4Appid(String appid){
 		int num=0;
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT distinct imie FROM Tb_Statistical WHERE AppID=?";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT distinct imie FROM Tb_UserControl WHERE AppID=?";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,appid);
 			rs = sta.executeQuery();
@@ -129,8 +151,8 @@ public class StatisticalDao {
 	public String getStatisticalNum(){
 		int num=0;
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT distinct imie FROM Tb_Statistical";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT distinct imie FROM Tb_UserControl";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
@@ -151,8 +173,8 @@ public class StatisticalDao {
 	public String getStatisticalLiveUserNum(){
 		int num=0;
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT * FROM Tb_Statistical WHERE realTime =?";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT * FROM Tb_UserControl WHERE realTime =?";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,CommonUtil.getTime(true));
 			rs = sta.executeQuery();
@@ -174,9 +196,9 @@ public class StatisticalDao {
 	public String getStatisticalActiveNum(){
 		int num=0;
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT sum(num) as 总数 FROM Tb_Statistical WHERE realTime =? GROUP by realTime";
-//			String SQL = "Select sum(num) as 总数,realtime From Tb_Statistical WHERE realTime =? GROUP by realTime";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT sum(num) as 总数 FROM Tb_UserControl WHERE realTime =? GROUP by realTime";
+//			String SQL = "Select sum(num) as 总数,realtime From Tb_UserControl WHERE realTime =? GROUP by realTime";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,CommonUtil.getTime(true));
 			rs = sta.executeQuery();
@@ -200,9 +222,9 @@ public class StatisticalDao {
 		List<LiveDataBean> liveDataBeans = new ArrayList<>();
 		try {
 
-			conn = JDBCUtil.getSQLite4Statistical();
-//			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
-			String SQL = "Select count(1) as 行数,realtime From Tb_Statistical  where realtime like '"+time+"%' group by  realtime";
+			conn = JDBCUtil.getSQLite4UserControl();
+//			String SQL = "SELECT distinct realTime FROM Tb_UserControl WHERE realTime =?";
+			String SQL = "Select count(1) as 行数,realtime From Tb_UserControl  where realtime like '"+time+"%' group by  realtime";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
@@ -229,9 +251,9 @@ public class StatisticalDao {
 		List<LiveDataBean> liveDataBeans = new ArrayList<>();
 		try {
 
-			conn = JDBCUtil.getSQLite4Statistical();
-//			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
-			String SQL = "Select sum(num) as 总数,realtime From Tb_Statistical  where realtime like '"+time+"%' group by  realtime";
+			conn = JDBCUtil.getSQLite4UserControl();
+//			String SQL = "SELECT distinct realTime FROM Tb_UserControl WHERE realTime =?";
+			String SQL = "Select sum(num) as 总数,realtime From Tb_UserControl  where realtime like '"+time+"%' group by  realtime";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
@@ -257,11 +279,11 @@ public class StatisticalDao {
 
 
 	//获取版本信息
-	public List<StatisticalBean> findStatisticalBean(String appid){
-		List<StatisticalBean> list = new ArrayList<>();
+	public List<UserControlBean> findStatisticalBean(String appid){
+		List<UserControlBean> list = new ArrayList<>();
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT * FROM Tb_Statistical WHERE AppID='"+appid+"' ORDER BY uid DESC ";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String SQL = "SELECT * FROM Tb_UserControl WHERE AppID='"+appid+"' ORDER BY uid DESC ";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
@@ -279,10 +301,10 @@ public class StatisticalDao {
 	}
 
 	//更新统计信息：目前只能更新当前appid和当前手机的用户；现阶段无法实现高并发，可研究Firebird
-	public synchronized boolean updataStatis(StatisticalBean company){
+	public synchronized boolean updataStatis(UserControlBean company){
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
-			String findSQL ="select num from Tb_Statistical where AppID=? and realTime=? and imie=?";
+			conn = JDBCUtil.getSQLite4UserControl();
+			String findSQL ="select num from Tb_UserControl where AppID=? and realTime=? and imie=?";
 			sta = conn.prepareStatement(findSQL);
 			sta.setString(1,company.AppID);
 			sta.setString(2,company.realTime);
@@ -295,7 +317,7 @@ public class StatisticalDao {
 			Lg.e("需要修改的版本信息："+num);
 			//若本地无该公司的版本信息，则新增
 			if (MathUtil.toD(num)<=0){
-				String SQL = "INSERT INTO Tb_Statistical (CompanyName, App_Version,AppID,imie," +
+				String SQL = "INSERT INTO Tb_UserControl (CompanyName, App_Version,AppID,imie," +
 						"realTime,num,onActivity,phone) VALUES (?,?,?,?,?,?,?,?)";
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
@@ -304,8 +326,7 @@ public class StatisticalDao {
 				sta.setString(4,company.imie);
 				sta.setString(5,company.realTime);
 				sta.setString(6,"1");
-				sta.setString(7,company.onActivity);
-				sta.setString(8,company.phone);
+				sta.setString(7,company.can_use);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -319,12 +340,12 @@ public class StatisticalDao {
 			}else{
 				int addnum=MathUtil.toInt(num)+1;
 				Lg.e("写入数量:"+addnum);
-				String SQL = "UPDATE Tb_Statistical set num=?,realTime =?,phone=? WHERE AppID=? AND imie = ?";
+				String SQL = "UPDATE Tb_UserControl set num=?,realTime =?,phone=? WHERE AppID=? AND imie = ?";
 //				Lg.e("更新数据库语句"+SQL);
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,addnum+"");
 				sta.setString(2,company.realTime);
-				sta.setString(3,company.phone);
+//				sta.setString(3,company.phone);
 				sta.setString(4,company.AppID);
 				sta.setString(5,company.imie);
 				int i = sta.executeUpdate();
@@ -352,9 +373,9 @@ public class StatisticalDao {
 		return false;
 	}
 	//更新版本信息表时，同时更新公司信息表的app版本号
-	private void changeCompanyVersion(StatisticalBean company){
+	private void changeCompanyVersion(UserControlBean company){
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
+			conn = JDBCUtil.getSQLite4UserControl();
 			String findSQL ="select COUNT(*) as 数量 from Tb_Company where AppID='"+company.AppID+"'";
 			sta = conn.prepareStatement(findSQL);
 			rs = sta.executeQuery();
@@ -384,7 +405,7 @@ public class StatisticalDao {
 	//更新版本信息表时，同时更新公司信息表的Log日志信息
 	private void changeCompanyLog(String appid,String log){
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
+			conn = JDBCUtil.getSQLite4UserControl();
 			String findSQL ="select COUNT(*) as 数量,Remark from Tb_Company where AppID='"+appid+"'";
 			sta = conn.prepareStatement(findSQL);
 			rs = sta.executeQuery();
@@ -417,7 +438,7 @@ public class StatisticalDao {
 
 	public boolean deleteCompany(String appid){
 		try {
-			conn = JDBCUtil.getSQLite4Statistical();
+			conn = JDBCUtil.getSQLite4UserControl();
 			String SQL = "DELETE FROM Tb_Company WHERE AppID = '"+appid+"'";
 			Lg.e("删除项目："+SQL);
 			sta = conn.prepareStatement(SQL);
@@ -435,16 +456,15 @@ public class StatisticalDao {
 	}
 
 	//统一获取表数据
-	private StatisticalBean backBean(ResultSet rs) throws SQLException{
-		StatisticalBean bean = new StatisticalBean();
+	private UserControlBean backBean(ResultSet rs) throws SQLException{
+		UserControlBean bean = new UserControlBean();
 		bean.sid = rs.getInt("sid");
 		bean.CompanyName = rs.getString("CompanyName");
 		bean.AppVersion = rs.getString("App_Version");
 		bean.AppID = rs.getString("AppID");
 		bean.imie = rs.getString("imie");
 		bean.realTime = rs.getString("realTime");
-		bean.num = rs.getString("num");
-		bean.onActivity = rs.getString("onActivity");
+		bean.can_use = rs.getString("can_use");
 		return bean;
 	}
 }

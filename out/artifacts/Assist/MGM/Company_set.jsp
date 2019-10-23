@@ -117,13 +117,13 @@
                 <input type="text" class="form-control" id="img_logo_url" placeholder="Enter telephone" name="img_logo_url"
                        value="<%=company.getImg_Logo()%>">
             </div>
-            <input type="hidden" class="form-control" id="code" placeholder="Enter telephone" name="code"
-                   value="<%=companyDao.getDeleteCode()%>">
+            <%--<input type="hidden" class="form-control" id="code" placeholder="Enter telephone" name="code"--%>
+                   <%--value="<%=companyDao.getDeleteCode()%>">--%>
             <%--<div class="form-group">--%>
                 <%--<a >项目Log日志:</a>--%>
                 <%--&lt;%&ndash;<input type="text" class="form-control" rows="5" id="remark" placeholder="Enter telephone" name="remark"&ndash;%&gt;--%>
                        <%--&lt;%&ndash;value="<%=company.getRemark()%>">&ndash;%&gt;--%>
-                <%--<textarea class="form-control" rows="5" id="remark"  name="remark"><%=company.getRemark()%></textarea>--%>
+                <input type="hidden" class="form-control" rows="5" id="remark"  name="remark" value="<%=company.getRemark()%>">
 
             <%--</div>--%>
 
