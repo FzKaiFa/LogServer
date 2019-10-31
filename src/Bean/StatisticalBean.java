@@ -11,6 +11,7 @@ public class StatisticalBean {
     public String num;//更新提示
     public String onActivity;//更新日期
     public String phone;//更新日期
+    public String realTimeShort;//更新提示
 
 
 

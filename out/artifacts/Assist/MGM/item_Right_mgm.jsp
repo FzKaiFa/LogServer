@@ -95,25 +95,28 @@
     List<LiveDataBean> liveData4Num = statisticalDao.getStatisticalLiveData4Num(thisMon.substring(0,thisMon.length()-2));
     List<String> dayList = new ArrayList<>();
     List<String> dayList4Num = new ArrayList<>();
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i <= 31; i++) {
         dayList.add(i,"0");
         dayList4Num.add(i,"0");
     }
     Lg.e("得到daylist1111"+dayList.size(),dayList);
 
-    for (int i = 0; i < 31; i++) {
+    /*活跃用户数*/
+    for (int i = 0; i <= 32; i++) {
         for (int j = 0; j < liveData.size(); j++) {
+            Lg.e("liveData"+i,MathUtil.toInt(liveData.get(j).LDay));
             if (MathUtil.toInt(liveData.get(j).LDay)==i){
                 Lg.e("替换"+i+"--"+liveData.get(j).LNum);
-                dayList.add(i-1,liveData.get(j).LNum);
+                dayList.set(i-1,liveData.get(j).LNum);
             }
         }
     }
-    for (int i = 0; i < 31; i++) {
+    /*活跃度*/
+    for (int i = 0; i <= 32; i++) {
         for (int j = 0; j < liveData4Num.size(); j++) {
             if (MathUtil.toInt(liveData4Num.get(j).LDay)==i){
                 Lg.e("替换"+i+"--"+liveData4Num.get(j).LNum);
-                dayList4Num.add(i-1,liveData4Num.get(j).LNum);
+                dayList4Num.set(i-1,liveData4Num.get(j).LNum);
             }
         }
     }

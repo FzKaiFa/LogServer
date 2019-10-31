@@ -26,6 +26,7 @@ public class UploadStatistical extends HttpServlet {
         StatisticalBean statisticalBean = gson.fromJson(parameter, StatisticalBean.class);
         StatisticalDao webDao = new StatisticalDao();
         //检查本地是否已存在相同的appid，有则中断添加
+        statisticalBean.realTimeShort = statisticalBean.realTime.substring(0,10);//保存短的时间段
         boolean ok =webDao.updataStatis(statisticalBean);
         if (ok){
             Lg.e("更新成功");

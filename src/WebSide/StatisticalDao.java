@@ -147,12 +147,12 @@ public class StatisticalDao {
 		}
 		return num+"";
 	}
-	//获取统计信息表中的当天的活跃用户数
+	//获取统计信息表中的	当天	的活跃用户数
 	public String getStatisticalLiveUserNum(){
 		int num=0;
 		try {
 			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT * FROM Tb_Statistical WHERE realTime =?";
+			String SQL = "SELECT * FROM Tb_Statistical WHERE realTime LIKE ?";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,CommonUtil.getTime(true));
 			rs = sta.executeQuery();
@@ -170,12 +170,12 @@ public class StatisticalDao {
 		}
 		return num+"";
 	}
-	//获取统计信息表中的当天的活跃度
+	//获取统计信息表中的	当天	的活跃度
 	public String getStatisticalActiveNum(){
 		int num=0;
 		try {
 			conn = JDBCUtil.getSQLite4Statistical();
-			String SQL = "SELECT sum(num) as 总数 FROM Tb_Statistical WHERE realTime =? GROUP by realTime";
+			String SQL = "SELECT sum(num) as 总数 FROM Tb_Statistical WHERE realTimeShort LIKE ? GROUP by realTime";
 //			String SQL = "Select sum(num) as 总数,realtime From Tb_Statistical WHERE realTime =? GROUP by realTime";
 			sta = conn.prepareStatement(SQL);
 			sta.setString(1,CommonUtil.getTime(true));
@@ -202,14 +202,15 @@ public class StatisticalDao {
 
 			conn = JDBCUtil.getSQLite4Statistical();
 //			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
-			String SQL = "Select count(1) as 行数,realtime From Tb_Statistical  where realtime like '"+time+"%' group by  realtime";
+			String SQL = "Select count(1) as 行数,realTimeShort From Tb_Statistical  where realTimeShort like '"+time+"%' group by  realtime";
+			Lg.e("获取当天活跃用户数SQL:"+SQL);
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
 				LiveDataBean bean = new LiveDataBean();
 				bean.LNum = rs.getString("行数");
-				bean.LTime = rs.getString("realtime");
-				bean.LDay = bean.LTime.substring(bean.LTime.length()-2,bean.LTime.length());
+				bean.LTime = rs.getString("realTimeShort");
+				bean.LDay = bean.LTime.substring(8,10);
 				liveDataBeans.add(bean);
 //			Lg.e("得到行数"+rs.getRow());
 //			num=rs.getRow();
@@ -231,14 +232,14 @@ public class StatisticalDao {
 
 			conn = JDBCUtil.getSQLite4Statistical();
 //			String SQL = "SELECT distinct realTime FROM Tb_Statistical WHERE realTime =?";
-			String SQL = "Select sum(num) as 总数,realtime From Tb_Statistical  where realtime like '"+time+"%' group by  realtime";
+			String SQL = "Select sum(num) as 总数,realTimeShort From Tb_Statistical  where realTimeShort like '"+time+"%' group by  realtime";
 			sta = conn.prepareStatement(SQL);
 			rs = sta.executeQuery();
 			while (rs.next()) {
 				LiveDataBean bean = new LiveDataBean();
 				bean.LNum = rs.getString("总数");
-				bean.LTime = rs.getString("realtime");
-				bean.LDay = bean.LTime.substring(bean.LTime.length()-2,bean.LTime.length());
+				bean.LTime = rs.getString("realTimeShort");
+				bean.LDay = bean.LTime.substring(8,10);
 				liveDataBeans.add(bean);
 //			Lg.e("得到行数"+rs.getRow());
 //			num=rs.getRow();
@@ -282,10 +283,10 @@ public class StatisticalDao {
 	public synchronized boolean updataStatis(StatisticalBean company){
 		try {
 			conn = JDBCUtil.getSQLite4Statistical();
-			String findSQL ="select num from Tb_Statistical where AppID=? and realTime=? and imie=?";
+			String findSQL ="select num from Tb_Statistical where AppID=? and realTimeShort=? and imie=?";
 			sta = conn.prepareStatement(findSQL);
 			sta.setString(1,company.AppID);
-			sta.setString(2,company.realTime);
+			sta.setString(2,company.realTimeShort);
 			sta.setString(3,company.imie);
 			rs = sta.executeQuery();
 			String num="";
@@ -296,7 +297,7 @@ public class StatisticalDao {
 			//若本地无该公司的版本信息，则新增
 			if (MathUtil.toD(num)<=0){
 				String SQL = "INSERT INTO Tb_Statistical (CompanyName, App_Version,AppID,imie," +
-						"realTime,num,onActivity,phone) VALUES (?,?,?,?,?,?,?,?)";
+						"realTime,num,onActivity,phone,realTimeShort) VALUES (?,?,?,?,?,?,?,?,?)";
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,company.CompanyName);
 				sta.setString(2,company.AppVersion);
@@ -306,6 +307,7 @@ public class StatisticalDao {
 				sta.setString(6,"1");
 				sta.setString(7,company.onActivity);
 				sta.setString(8,company.phone);
+				sta.setString(9,company.realTimeShort);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -319,7 +321,7 @@ public class StatisticalDao {
 			}else{
 				int addnum=MathUtil.toInt(num)+1;
 				Lg.e("写入数量:"+addnum);
-				String SQL = "UPDATE Tb_Statistical set num=?,realTime =?,phone=? WHERE AppID=? AND imie = ?";
+				String SQL = "UPDATE Tb_Statistical set num=?,realTime =?,phone=?,realTimeShort=? WHERE AppID=? AND imie = ?";
 //				Lg.e("更新数据库语句"+SQL);
 				sta = conn.prepareStatement(SQL);
 				sta.setString(1,addnum+"");
@@ -327,6 +329,7 @@ public class StatisticalDao {
 				sta.setString(3,company.phone);
 				sta.setString(4,company.AppID);
 				sta.setString(5,company.imie);
+				sta.setString(6,company.realTimeShort);
 				int i = sta.executeUpdate();
 				if(i>0){
 					//更新公司信息表的app版本号
@@ -443,6 +446,7 @@ public class StatisticalDao {
 		bean.AppID = rs.getString("AppID");
 		bean.imie = rs.getString("imie");
 		bean.realTime = rs.getString("realTime");
+		bean.realTimeShort = rs.getString("realTimeShort");
 		bean.num = rs.getString("num");
 		bean.onActivity = rs.getString("onActivity");
 		return bean;
