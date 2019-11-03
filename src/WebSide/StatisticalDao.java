@@ -220,7 +220,7 @@ public class StatisticalDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			JDBCUtil.close(rs,sta,conn);
+//			JDBCUtil.close(rs,sta,conn);
 		}
 		Lg.e("得到当天活跃用户数据",liveDataBeans);
 		return liveDataBeans;

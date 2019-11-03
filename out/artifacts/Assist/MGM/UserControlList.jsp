@@ -31,14 +31,59 @@
     <%--<link rel="stylesheet" href="css/bootstrap.min.css">--%>
     <%--<link rel="stylesheet" href="../js/vue.min.js">--%>
     <%--<link rel="stylesheet" href="../js/vue.min.js" />--%>
+    <link rel="stylesheet" href="../js/qrscan.js" />
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-
+    <style>
+        video {
+            display: block;
+            margin: 0 auto;
+            width: 240px;
+            height: 240px;
+            background: #000;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
 <jsp:include page="../headLayout.jsp"/>
+
+
+<div id="video"></div>
+<div>
+    <button id="open">打开</button>
+    <button id="close">关闭</button>
+</div>
+<div id="result"></div>
+<script>
+    var ds = null;
+    var scan = new QRScan('video');
+    document.getElementById('open').onclick = function () {
+        scan.openScan();
+        ds = window.setInterval(function () {
+            startScan();
+        }, 1500);
+    };
+    document.getElementById('close').onclick = function () {
+        scan.closeScan();
+        window.clearInterval(ds);
+    };
+    var re_div = document.getElementById('result');
+    function startScan() {
+        scan.getImgDecode(function (data) {
+            console.log(data);
+            var p = document.createElement('p');
+            if (data.success) {
+                p.innerHTML = 'RESULT: ' + data.payload;
+            } else {
+                p.innerHTML = 'ERROR: ' + data.msg;
+            }
+            re_div.appendChild(p);
+        });
+    };
+</script>
 <%--
 <%
     WebDao aa = new WebDao();
@@ -97,7 +142,6 @@
             for (int i = 0; i < list.size(); i++) {
                 Company rs = (Company) list.get(i);
                 testBS.add(new TestB(rs.getCompanyName(),rs.getAppID()));
-
         %>
         <option><%=rs.getCompanyName()%></option>
         <%
@@ -135,7 +179,46 @@
     </p>
     <p>{{ answer }}</p>
 </div>
+
+<input type="file" accept="image/*" capture="camera" onchange="onCapture(this)"/>
 <script>
+    function onCapture(target) {
+        var file = target.files[0];
+        if (!file){
+        //未选择照片
+
+        }
+        if (window.FileReader){
+            var reader = new FileReader();
+             reader.readAsDataURL(file);
+             reader.onload = function () {
+                 var pic  = this.result;//base64编码后的照片
+
+                 //二维码识别代码
+                 axios.get('http://192.168.0.105:8085/Assist/UserIO',{
+                     params: {
+                         json: pic
+                     }
+                 })
+                     .then(function (response) {
+                         console.log(response);
+                         vm.answer = _.capitalize(response)
+//                        vm.answer = _.capitalize(response.data.answer)
+                     })
+                     .catch(function (error) {
+                         console.log(error);
+//                        vm.answer = error
+
+                         vm.answer = 'Error! Could not reach the API. ' + error
+                     })
+                 //死别结果上传服务器
+                 console.log("读取成功");
+
+             }
+        }else{
+            alert("暂不支持");
+        }
+    }
     var watchExampleVM = new Vue({
         el: '#watch-example',
         data: {
@@ -165,7 +248,12 @@
 //                }
                 this.answer = 'Thinking...'
                 var vm = this
-                axios.get('http://148.70.108.65:8080/LogAssist/UserIO')
+//                axios.get('http://148.70.108.65:8080/LogAssist/UserIO')
+                axios.get('http://192.168.0.105:8085/Assist/UserIO',{
+                    params: {
+                        json: "123"
+                    }
+                })
                     .then(function (response) {
                         console.log(response);
                         vm.answer = _.capitalize(response)
